@@ -1,6 +1,6 @@
 import SectionHeader from "../components/SectionHeader";
 
-export default function Home() {
+export default function Table_booking() {
 
     return (
 
@@ -13,7 +13,7 @@ export default function Home() {
                     <SectionHeader/>
 
                     <div className="section-body">
-                        Home
+                        Table Booking
                     </div>
 
                 </section>

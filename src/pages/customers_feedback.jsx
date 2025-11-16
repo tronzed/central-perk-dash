@@ -1,6 +1,6 @@
 import SectionHeader from "../components/SectionHeader";
 
-export default function Home() {
+export default function customers_feedback() {
 
     return (
 
@@ -13,7 +13,7 @@ export default function Home() {
                     <SectionHeader/>
 
                     <div className="section-body">
-                        Home
+                        Customer Feedback
                     </div>
 
                 </section>

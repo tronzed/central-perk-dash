@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export default function Sidebar() {
     return (
 
@@ -12,41 +14,30 @@ export default function Sidebar() {
                         <a href="index.html">St</a>
                     </div>
                     <ul className="sidebar-menu">
-                        <li className="dropdown">
-                            <a href="#" className="nav-link has-dropdown">
-                                <i className="fas fa-fire" />
-                                <span>Dashboard</span>
-                            </a>
-                            <ul className="dropdown-menu">
-                                <li>
-                                    <a className="nav-link" href="index-0.html">
-                                        General Dashboard
-                                    </a>
-                                </li>
-                                <li>
-                                    <a className="nav-link" href="index.html">
-                                        Ecommerce Dashboard
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                       
                         <li>
-                            <a className="nav-link" href="blank.html">
-                                <i className="far fa-square" /> <span>Blank Page</span>
-                            </a>
+                            <Link className="nav-link" to="/">
+                                <i className="fas fa-pencil-ruler" /> <span>Home</span>
+                            </Link>
                         </li>
-                
-                  
-                       
-                       
-                   
-                    
-                     
                         <li>
-                            <a className="nav-link" href="credits.html">
-                                <i className="fas fa-pencil-ruler" /> <span>Credits</span>
-                            </a>
+                            <Link className="nav-link" to="order">
+                                <i className="fas fa-pencil-ruler" /> <span>Order</span>
+                            </Link>
+                        </li>
+                        <li>
+                            <Link className="nav-link" to="menu">
+                                <i className="fas fa-pencil-ruler" /> <span>Menu</span>
+                            </Link>
+                        </li>
+                        <li>
+                            <Link className="nav-link" to="customer-feedback">
+                                <i className="fas fa-pencil-ruler" /> <span>Customer Feedback</span>
+                            </Link>
+                        </li>
+                        <li>
+                            <Link className="nav-link" to="table-booking">
+                                <i className="fas fa-pencil-ruler" /> <span>Table Booking</span>
+                            </Link>
                         </li>
                     </ul>
                     
