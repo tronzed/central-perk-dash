@@ -1,0 +1,11 @@
+.img-res {
+    max-width: 100%;
+}
+.main-sidebar .sidebar-brand {
+    height: auto;
+    padding: 12px;
+}
+.main-sidebar .sidebar-brand a {
+    max-width: 155px;
+    display: inline-block;
+}

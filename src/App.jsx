@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import Footer from './components/Footer'
 import Sidebar from './components/Sidebar';
 import Header from './components/Header';
@@ -7,15 +6,9 @@ import Home from './pages/Home'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
     <>
-
-
-
-
-
 
       <BrowserRouter>
 
@@ -34,11 +27,6 @@ function App() {
           </div>
         </div>
       </BrowserRouter>
-
-
-
-
-
 
     </>
   )
