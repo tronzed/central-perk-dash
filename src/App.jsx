@@ -28,7 +28,7 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/order" element={<Order />} />
               <Route path="/menu" element={<Menu />} />
-              <Route path="/customer-feedback" element={<Customers_Feedback />} />
+              {/* <Route path="/customer-feedback" element={<Customers_Feedback />} /> */}
               <Route path="/table-booking" element={<Table_booking />} />
             </Routes>
 
