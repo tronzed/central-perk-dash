@@ -1,6 +1,6 @@
 import SectionHeader from "../components/SectionHeader";
 
-export default function customers_feedback() {
+export default function CustomersFeedback() {
 
     return (
 

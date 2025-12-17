@@ -9,6 +9,7 @@ import Menu from './pages/Menu'
 import Table_booking from './pages/Table_booking'
 
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import CustomersFeedback from './pages/CustomersFeedback';
 
 function App() {
 
@@ -27,6 +28,7 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/order" element={<Order />} />
               <Route path="/menu" element={<Menu />} />
+              <Route path="/customer-feedback" element={<CustomersFeedback/>} />
               <Route path="/table-booking" element={<Table_booking />} />
             </Routes>
 
