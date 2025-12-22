@@ -1,0 +1,42 @@
+----- (Home) -----
+
+- New orders 
+- Total orders 
+- Pending order
+- Monthly revenue
+- Yearly revenue
+
+
+----- (Order) -----
+
+- Order listing page
+- Order edit order
+- Add order
+
+-[ Add search functionality in orders ]-
+
+----- (Menu - Food) -----
+
+- Food item listing
+- Food item single
+- Add food item
+
+-[ Add search functionality in menu ]-
+
+
+----- (Customer Feedback) -----
+
+- Customer Feedback listing
+- Customer single 
+
+-[ Add search functionality in Customer Feedback ]-
+
+
+
+----- (Table Booking) -----
+
+- Table booking listing 
+- Table booking single
+- Add table booking
+
+-[ Add search functionality in table booking ]-

@@ -9,3 +9,15 @@
     max-width: 155px;
     display: inline-block;
 }
+.table_action_box {
+    display: flex;
+    gap: 8px;
+}
+.add_box_cover {
+    display: flex;
+    justify-content: end;
+    margin-bottom: 15px;
+}
+.full_th_box {
+    width: 100%;
+}

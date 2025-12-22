@@ -10,6 +10,7 @@ import Table_booking from './pages/Table_booking'
 
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import CustomersFeedback from './pages/CustomersFeedback';
+import AddMenu from './pages/addMenu';
 
 function App() {
 
@@ -30,6 +31,7 @@ function App() {
               <Route path="/menu" element={<Menu />} />
               <Route path="/customer-feedback" element={<CustomersFeedback/>} />
               <Route path="/table-booking" element={<Table_booking />} />
+              <Route path="/add-menu" element={<AddMenu/>} />
             </Routes>
 
             {/* <Footer /> */}
