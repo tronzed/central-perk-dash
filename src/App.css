@@ -21,3 +21,6 @@
 .full_th_box {
     width: 100%;
 }
+.hide_me {
+    display: none;
+}

@@ -15,12 +15,9 @@ export default function TableBooking() {
 
                     <div className="section-body">
 
-                        <div className="add_box_cover">
-                            <Link to="/add-menu" class="btn btn-primary">Add Food Item</Link>
-                        </div>
                         <div className="card">
                             <div className="card-header">
-                                <h4>Menu</h4>
+                                <h4>Booking Table</h4>
                             </div>
                             <div className="card-body p-0">
                                 <div className="table-responsive">
