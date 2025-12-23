@@ -66,9 +66,20 @@ export default function AddMenu() {
                                 </div>
 
                                 <div className="form-group">
-                                    <label>Availability</label>
-                                    <textarea class="form-control"></textarea>
+                                    <div className="control-label">Status</div>
+                                    <label className="custom-switch mt-2">
+                                        <input
+                                            type="checkbox"
+                                            name="custom-switch-checkbox"
+                                            className="custom-switch-input"
+                                        />
+                                        <span className="custom-switch-indicator" />
+                                        {/* <span className="custom-switch-description">
+                                            I agree with terms and conditions
+                                        </span> */}
+                                    </label>
                                 </div>
+
 
 
                             </div>

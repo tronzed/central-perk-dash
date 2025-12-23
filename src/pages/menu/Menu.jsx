@@ -28,95 +28,108 @@ export default function Menu() {
                                         <tbody>
                                             <tr>
                                                 <th>#</th>
-                                                <th className="full_th_box">Name</th>
+                                                <th className="">Name</th>
+                                                <th>Food Type</th>
+                                                <th>Price</th>
                                                 <th>Status</th>
                                                 <th>Action</th>
                                             </tr>
                                             <tr>
                                                 <td>1</td>
-                                                <td>Irwansyah Saputra</td>
-                                                <td>
-                                                    <div className="badge badge-success">Active</div>
-                                                </td>
-                                                <td>
-                                                    <div className="table_action_box">
-                                                        <a href="#" className="btn btn-outline-danger">
-                                                            Delete
-                                                        </a>
-                                                        <a href="#" className="btn btn-outline-secondary">
-                                                            Edit
-                                                        </a>
-                                                    </div>
-                                                </td>
+                                                <td>Cheese Burger</td>
+                                                <td>Non-Veg</td>
+                                                <td>199</td>
+                                                <td><span class="badge badge-success">Available</span></td>
+                                                <div className="table_action_box">
+                                                    <a href="#" className="btn btn-outline-danger">
+                                                        Delete
+                                                    </a>
+                                                    <a href="#" className="btn btn-outline-secondary">
+                                                        Edit
+                                                    </a>
+                                                </div>
                                             </tr>
+
                                             <tr>
                                                 <td>2</td>
-                                                <td>Hasan Basri</td>
-                                                <td>
-                                                    <div className="badge badge-success">Active</div>
-                                                </td>
-                                                <td>
-                                                    <div className="table_action_box">
-                                                        <a href="#" className="btn btn-outline-danger">
-                                                            Delete
-                                                        </a>
-                                                        <a href="#" className="btn btn-outline-secondary">
-                                                            Edit
-                                                        </a>
-                                                    </div>
-                                                </td>
+                                                <td>Paneer Butter Masala</td>
+                                                <td>Veg</td>
+                                                <td>249</td>
+                                                <td><span class="badge badge-success">Available</span></td>
+                                                <div className="table_action_box">
+                                                    <a href="#" className="btn btn-outline-danger">
+                                                        Delete
+                                                    </a>
+                                                    <a href="#" className="btn btn-outline-secondary">
+                                                        Edit
+                                                    </a>
+                                                </div>
                                             </tr>
+
                                             <tr>
                                                 <td>3</td>
-                                                <td>Kusnadi</td>
-                                                <td>
-                                                    <div className="badge badge-danger">Not Active</div>
-                                                </td>
-                                                <td>
-                                                    <div className="table_action_box">
-                                                        <a href="#" className="btn btn-outline-danger">
-                                                            Delete
-                                                        </a>
-                                                        <a href="#" className="btn btn-outline-secondary">
-                                                            Edit
-                                                        </a>
-                                                    </div>
-                                                </td>
+                                                <td>Chicken Biryani</td>
+                                                <td>Non-Veg</td>
+                                                <td>299</td>
+                                                <td><span class="badge badge-warning">Limited</span></td>
+                                                <div className="table_action_box">
+                                                    <a href="#" className="btn btn-outline-danger">
+                                                        Delete
+                                                    </a>
+                                                    <a href="#" className="btn btn-outline-secondary">
+                                                        Edit
+                                                    </a>
+                                                </div>
                                             </tr>
+
                                             <tr>
                                                 <td>4</td>
-                                                <td>Rizal Fakhri</td>
-                                                <td>
-                                                    <div className="badge badge-success">Active</div>
-                                                </td>
-                                                <td>
-                                                    <div className="table_action_box">
-                                                        <a href="#" className="btn btn-outline-danger">
-                                                            Delete
-                                                        </a>
-                                                        <a href="#" className="btn btn-outline-secondary">
-                                                            Edit
-                                                        </a>
-                                                    </div>
-                                                </td>
+                                                <td>Veg Hakka Noodles</td>
+                                                <td>Veg</td>
+                                                <td>179</td>
+                                                <td><span class="badge badge-danger">Out of Stock</span></td>
+                                                <div className="table_action_box">
+                                                    <a href="#" className="btn btn-outline-danger">
+                                                        Delete
+                                                    </a>
+                                                    <a href="#" className="btn btn-outline-secondary">
+                                                        Edit
+                                                    </a>
+                                                </div>
                                             </tr>
+
                                             <tr>
                                                 <td>5</td>
-                                                <td>Isnap Kiswandi</td>
-                                                <td>
-                                                    <div className="badge badge-success">Active</div>
-                                                </td>
-                                                <td>
-                                                    <div className="table_action_box">
-                                                        <a href="#" className="btn btn-outline-danger">
-                                                            Delete
-                                                        </a>
-                                                        <a href="#" className="btn btn-outline-secondary">
-                                                            Edit
-                                                        </a>
-                                                    </div>
-                                                </td>
+                                                <td>Margherita Pizza</td>
+                                                <td>Veg</td>
+                                                <td>329</td>
+                                                <td><span class="badge badge-success">Available</span></td>
+                                                <div className="table_action_box">
+                                                    <a href="#" className="btn btn-outline-danger">
+                                                        Delete
+                                                    </a>
+                                                    <a href="#" className="btn btn-outline-secondary">
+                                                        Edit
+                                                    </a>
+                                                </div>
                                             </tr>
+
+                                            <tr>
+                                                <td>6</td>
+                                                <td>Chicken Shawarma</td>
+                                                <td>Non-Veg</td>
+                                                <td>219</td>
+                                                <td><span class="badge badge-secondary">Inactive</span></td>
+                                                <div className="table_action_box">
+                                                    <a href="#" className="btn btn-outline-danger">
+                                                        Delete
+                                                    </a>
+                                                    <a href="#" className="btn btn-outline-secondary">
+                                                        Edit
+                                                    </a>
+                                                </div>
+                                            </tr>
+
                                         </tbody>
                                     </table>
                                 </div>

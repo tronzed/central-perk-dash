@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import SectionHeader from "../../components/SectionHeader";
 
 export default function Order() {
@@ -9,11 +10,168 @@ export default function Order() {
             {/* Main Content */}
             <div className="main-content">
                 <section className="section">
-                    
-                    <SectionHeader/>
+
+                    <SectionHeader />
 
                     <div className="section-body">
-                        Order
+
+                        <div className="card">
+                            <div className="card-header">
+                                <h4>Orders</h4>
+                            </div>
+                            <div className="card-body p-0">
+                                <div className="table-responsive">
+                                    <table className="table table-striped table-md">
+                                        <tbody>
+                                            <tr>
+                                                <th>Order ID</th>
+                                                <th>Customer Name</th>
+                                                <th>Phone</th>
+                                                <th>Items</th>
+                                                <th>Total Amount (₹)</th>
+                                                <th>Payment Method</th>
+                                                <th>Payment Status</th>
+                                                <th>Order Type</th>
+                                                <th>Order Status</th>
+                                                <th>Order Date</th>
+                                                <th>Actions</th>
+                                            </tr>
+                                            <tr>
+                                                <td>#ORD1025</td>
+                                                <td>Rahul Sharma</td>
+                                                <td>9876543210</td>
+                                                <td>Cheese Burger ×1, Fries ×1</td>
+                                                <td>349</td>
+                                                <td>UPI</td>
+                                                <td><span class="badge badge-success">Paid</span></td>
+                                                <td>Delivery</td>
+                                                <td><span class="badge badge-warning">Preparing</span></td>
+                                                <td>22 Dec 2025, 7:45 PM</td>
+                                                <td>
+                                                    <div className="table_action_box">
+                                                        <a href="#" className="btn btn-outline-danger">
+                                                            Delete
+                                                        </a>
+                                                        <a href="#" className="btn btn-outline-secondary">
+                                                            Update
+                                                        </a>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>#ORD1026</td>
+                                                <td>Ananya Verma</td>
+                                                <td>9123456789</td>
+                                                <td>Paneer Pizza ×1, Garlic Bread ×1</td>
+                                                <td>599</td>
+                                                <td>Card</td>
+                                                <td><span class="badge badge-success">Paid</span></td>
+                                                <td>Delivery</td>
+                                                <td><span class="badge badge-info">Out for Delivery</span></td>
+                                                <td>22 Dec 2025, 8:10 PM</td>
+                                                <td>
+                                                    <div className="table_action_box">
+                                                        <a href="#" className="btn btn-outline-danger">Delete</a>
+                                                        <a href="#" className="btn btn-outline-secondary">Update</a>
+                                                    </div>
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td>#ORD1027</td>
+                                                <td>Amit Patel</td>
+                                                <td>9988776655</td>
+                                                <td>Veg Biryani ×2</td>
+                                                <td>480</td>
+                                                <td>COD</td>
+                                                <td><span class="badge badge-warning">Unpaid</span></td>
+                                                <td>Takeaway</td>
+                                                <td><span class="badge badge-secondary">Pending</span></td>
+                                                <td>22 Dec 2025, 8:25 PM</td>
+                                                <td>
+                                                    <div className="table_action_box">
+                                                        <a href="#" className="btn btn-outline-danger">Delete</a>
+                                                        <a href="#" className="btn btn-outline-secondary">Update</a>
+                                                    </div>
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td>#ORD1028</td>
+                                                <td>Neha Singh</td>
+                                                <td>9090909090</td>
+                                                <td>Chicken Wrap ×1, Cold Coffee ×1</td>
+                                                <td>329</td>
+                                                <td>UPI</td>
+                                                <td><span class="badge badge-success">Paid</span></td>
+                                                <td>Delivery</td>
+                                                <td><span class="badge badge-primary">Ready</span></td>
+                                                <td>22 Dec 2025, 8:40 PM</td>
+                                                <td>
+                                                    <div className="table_action_box">
+                                                        <a href="#" className="btn btn-outline-danger">Delete</a>
+                                                        <a href="#" className="btn btn-outline-secondary">Update</a>
+                                                    </div>
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td>#ORD1029</td>
+                                                <td>Rohit Mehra</td>
+                                                <td>9555443322</td>
+                                                <td>Masala Dosa ×1, Filter Coffee ×1</td>
+                                                <td>189</td>
+                                                <td>UPI</td>
+                                                <td><span class="badge badge-danger">Failed</span></td>
+                                                <td>Dine-In</td>
+                                                <td><span class="badge badge-danger">Cancelled</span></td>
+                                                <td>22 Dec 2025, 9:00 PM</td>
+                                                <td>
+                                                    <div className="table_action_box">
+                                                        <a href="#" className="btn btn-outline-danger">Delete</a>
+                                                        <a href="#" className="btn btn-outline-secondary">Update</a>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div className="card-footer text-right">
+                                <nav className="d-inline-block">
+                                    <ul className="pagination mb-0">
+                                        <li className="page-item disabled">
+                                            <a className="page-link" href="#" tabIndex={-1}>
+                                                <i className="fas fa-chevron-left" />
+                                            </a>
+                                        </li>
+                                        <li className="page-item active">
+                                            <a className="page-link" href="#">
+                                                1 <span className="sr-only">(current)</span>
+                                            </a>
+                                        </li>
+                                        <li className="page-item">
+                                            <a className="page-link" href="#">
+                                                2
+                                            </a>
+                                        </li>
+                                        <li className="page-item">
+                                            <a className="page-link" href="#">
+                                                3
+                                            </a>
+                                        </li>
+                                        <li className="page-item">
+                                            <a className="page-link" href="#">
+                                                <i className="fas fa-chevron-right" />
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+
+
+
                     </div>
 
                 </section>
