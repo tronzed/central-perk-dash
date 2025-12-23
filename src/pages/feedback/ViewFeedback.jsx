@@ -1,6 +1,6 @@
-import SectionHeader from "../components/SectionHeader";
+import SectionHeader from "../../components/SectionHeader";
 
-export default function CustomersFeedback() {
+export default function ViewFeedback() {
 
     return (
 
@@ -13,7 +13,7 @@ export default function CustomersFeedback() {
                     <SectionHeader/>
 
                     <div className="section-body">
-                        Customer Feedback
+                        View Feedback
                     </div>
 
                 </section>

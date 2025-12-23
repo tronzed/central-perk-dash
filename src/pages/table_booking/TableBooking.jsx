@@ -1,6 +1,6 @@
-import SectionHeader from "../components/SectionHeader";
+import SectionHeader from "../../components/SectionHeader";
 
-export default function Table_booking() {
+export default function TableBooking() {
 
     return (
 

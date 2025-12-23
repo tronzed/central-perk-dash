@@ -1,11 +1,9 @@
-import SectionHeader from "../components/SectionHeader";
+import SectionHeader from "../../components/SectionHeader";
 
-export default function AddMenu() {
+export default function ViewBooking() {
 
     return (
-
         <>
-
             {/* Main Content */}
             <div className="main-content">
                 <section className="section">
