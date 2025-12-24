@@ -8,7 +8,7 @@ export default function Sidebar() {
             <div className="main-sidebar sidebar-style-2">
                 <aside id="sidebar-wrapper">
                     <div className="sidebar-brand">
-                        <a href="index.html"> <img className="img-res" src='../assets/img/logo_ms.png' alt="" /> </a>
+                        <Link to="/"> <img className="img-res" src='../assets/img/logo_ms.png' alt="" /> </Link>
                     </div>
                     <div className="sidebar-brand sidebar-brand-sm">
                         <a href="index.html">St</a>

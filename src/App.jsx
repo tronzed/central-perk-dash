@@ -32,14 +32,14 @@ function App() {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/order" element={<Order />} />
-              <Route path="/view-order" element={<ViewOrder />} />
+              <Route path="/view-order/:id" element={<ViewOrder />} />
               <Route path="/menu" element={<Menu />} />
               <Route path="/customer-feedback" element={<CustomersFeedback/>} />
-              <Route path="/view-feedback" element={<ViewFeedback/>} />
+              <Route path="/view-feedback/:id" element={<ViewFeedback/>} />
               <Route path="/table-booking" element={<TableBooking />} />
-              <Route path="/view-booking" element={<ViewBooking />} />
+              <Route path="/view-booking/:id" element={<ViewBooking />} />
               <Route path="/add-menu" element={<AddMenu/>} />
-              <Route path="/edit-menu" element={<EditMenu/>} />
+              <Route path="/edit-menu/:id" element={<EditMenu/>} />
             </Routes>
 
             {/* <Footer /> */}

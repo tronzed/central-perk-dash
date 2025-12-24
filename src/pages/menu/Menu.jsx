@@ -1,11 +1,31 @@
 import { Link } from "react-router-dom";
 import SectionHeader from "../../components/SectionHeader";
 
+import { getMenu } from '../../utils/functions'
+import { useEffect, useState } from "react";
+
 export default function Menu() {
+
+    const [menuData, setMenuData] = useState();
+
+    useEffect(() => {
+
+        (async () => {
+
+            const data = await getMenu();
+
+            setMenuData(data);
+
+        })();
+
+
+    }, []);
 
     return (
 
         <>
+
+            {console.log(menuData, 'asdasd====')}
 
             {/* Main Content */}
             <div className="main-content">
@@ -34,6 +54,37 @@ export default function Menu() {
                                                 <th>Status</th>
                                                 <th>Action</th>
                                             </tr>
+
+
+                                            {
+
+                                                menuData?.map((value, key) => (
+                                                    <>
+
+                                                        <tr key={key}>
+                                                            <td>{key + 1}</td>
+                                                            <td>{value?.name}</td>
+                                                            <td>{value?.name}</td>
+                                                            <td>{value?.price}</td>
+                                                            <td>{value?.name}</td>
+                                                            <td>
+                                                                <div className="table_action_box">
+                                                                    <a href="#" className="btn btn-outline-danger">
+                                                                        Delete
+                                                                    </a>
+                                                                    <a href="#" className="btn btn-outline-secondary">
+                                                                        Edit
+                                                                    </a>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+
+                                                    </>
+                                                ))
+
+                                            }
+
+
                                             <tr>
                                                 <td>1</td>
                                                 <td>Cheese Burger</td>
