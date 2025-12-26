@@ -1,6 +1,25 @@
+import { useEffect, useState } from "react";
 import SectionHeader from "../../components/SectionHeader";
 
 export default function EditMenu() {
+
+
+    const [name, setName] = useState();
+    const [type, setType] = useState();
+    const [desc, setDesc] = useState();
+    const [price, setPrice] = useState();
+    const [status, setStatus] = useState();
+
+
+    function handleSubmit(e) {
+        e.preventDefault();
+        const data = { name, type, desc, price, status };
+        addMenu(data);
+    }
+
+    // useEffect(()=>{
+
+    // },[]);
 
     return (
 

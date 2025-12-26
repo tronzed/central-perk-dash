@@ -1,24 +1,23 @@
-import { Link } from "react-router-dom";
+import { Link, Links } from "react-router-dom";
 import SectionHeader from "../../components/SectionHeader";
 
-import { getMenu } from '../../utils/functions'
+import { getMenu, deleteMenuItem } from '../../utils/functions'
 import { useEffect, useState } from "react";
 
 export default function Menu() {
 
     const [menuData, setMenuData] = useState();
 
+    const getMenuItmes = async () => {
+        const data = await getMenu();
+        setMenuData(data);
+    };
+
     useEffect(() => {
-
         (async () => {
-
             const data = await getMenu();
-
             setMenuData(data);
-
         })();
-
-
     }, []);
 
     return (
@@ -66,15 +65,15 @@ export default function Menu() {
                                                             <td>{value?.name}</td>
                                                             <td>{value?.name}</td>
                                                             <td>{value?.price}</td>
-                                                            <td>{value?.name}</td>
+                                                            <td>{value?.status ? <span class="badge badge-success">Available</span> : <span class="badge badge-danger">Out of Stock</span>}</td>
                                                             <td>
                                                                 <div className="table_action_box">
-                                                                    <a href="#" className="btn btn-outline-danger">
+                                                                    <button onClick={() => { deleteMenuItem(value?.id); getMenuItmes() }} className="btn btn-outline-danger">
                                                                         Delete
-                                                                    </a>
-                                                                    <a href="#" className="btn btn-outline-secondary">
+                                                                    </button>
+                                                                    <Link to={'/edit-menu/'+value?.id} className="btn btn-outline-secondary">
                                                                         Edit
-                                                                    </a>
+                                                                    </Link>
                                                                 </div>
                                                             </td>
                                                         </tr>
@@ -85,101 +84,7 @@ export default function Menu() {
                                             }
 
 
-                                            <tr>
-                                                <td>1</td>
-                                                <td>Cheese Burger</td>
-                                                <td>Non-Veg</td>
-                                                <td>199</td>
-                                                <td><span class="badge badge-success">Available</span></td>
-                                                <div className="table_action_box">
-                                                    <a href="#" className="btn btn-outline-danger">
-                                                        Delete
-                                                    </a>
-                                                    <a href="#" className="btn btn-outline-secondary">
-                                                        Edit
-                                                    </a>
-                                                </div>
-                                            </tr>
 
-                                            <tr>
-                                                <td>2</td>
-                                                <td>Paneer Butter Masala</td>
-                                                <td>Veg</td>
-                                                <td>249</td>
-                                                <td><span class="badge badge-success">Available</span></td>
-                                                <div className="table_action_box">
-                                                    <a href="#" className="btn btn-outline-danger">
-                                                        Delete
-                                                    </a>
-                                                    <a href="#" className="btn btn-outline-secondary">
-                                                        Edit
-                                                    </a>
-                                                </div>
-                                            </tr>
-
-                                            <tr>
-                                                <td>3</td>
-                                                <td>Chicken Biryani</td>
-                                                <td>Non-Veg</td>
-                                                <td>299</td>
-                                                <td><span class="badge badge-warning">Limited</span></td>
-                                                <div className="table_action_box">
-                                                    <a href="#" className="btn btn-outline-danger">
-                                                        Delete
-                                                    </a>
-                                                    <a href="#" className="btn btn-outline-secondary">
-                                                        Edit
-                                                    </a>
-                                                </div>
-                                            </tr>
-
-                                            <tr>
-                                                <td>4</td>
-                                                <td>Veg Hakka Noodles</td>
-                                                <td>Veg</td>
-                                                <td>179</td>
-                                                <td><span class="badge badge-danger">Out of Stock</span></td>
-                                                <div className="table_action_box">
-                                                    <a href="#" className="btn btn-outline-danger">
-                                                        Delete
-                                                    </a>
-                                                    <a href="#" className="btn btn-outline-secondary">
-                                                        Edit
-                                                    </a>
-                                                </div>
-                                            </tr>
-
-                                            <tr>
-                                                <td>5</td>
-                                                <td>Margherita Pizza</td>
-                                                <td>Veg</td>
-                                                <td>329</td>
-                                                <td><span class="badge badge-success">Available</span></td>
-                                                <div className="table_action_box">
-                                                    <a href="#" className="btn btn-outline-danger">
-                                                        Delete
-                                                    </a>
-                                                    <a href="#" className="btn btn-outline-secondary">
-                                                        Edit
-                                                    </a>
-                                                </div>
-                                            </tr>
-
-                                            <tr>
-                                                <td>6</td>
-                                                <td>Chicken Shawarma</td>
-                                                <td>Non-Veg</td>
-                                                <td>219</td>
-                                                <td><span class="badge badge-secondary">Inactive</span></td>
-                                                <div className="table_action_box">
-                                                    <a href="#" className="btn btn-outline-danger">
-                                                        Delete
-                                                    </a>
-                                                    <a href="#" className="btn btn-outline-secondary">
-                                                        Edit
-                                                    </a>
-                                                </div>
-                                            </tr>
 
                                         </tbody>
                                     </table>
