@@ -63,7 +63,7 @@ export default function Menu() {
                                                         <tr key={key}>
                                                             <td>{key + 1}</td>
                                                             <td>{value?.name}</td>
-                                                            <td>{value?.name}</td>
+                                                            <td>{value?.type}</td>
                                                             <td>{value?.price}</td>
                                                             <td>{value?.status ? <span class="badge badge-success">Available</span> : <span class="badge badge-danger">Out of Stock</span>}</td>
                                                             <td>

@@ -29,17 +29,16 @@ export const addMenu = (val) => {
     );
 }
 
-// Add menu
-
+// Edit menu
 export const editMenu = (val) => {
     const data = val;
-    fetch(firebaseURL + 'menu/items.json', {
-        method: 'POST',
+    fetch(firebaseURL + 'menu/items/' + data.id + '.json', {
+        method: 'PUT',
         header: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data)
 
     }).then(
-        alert('added')
+        console.log('added')
     );
 }
 
@@ -47,12 +46,17 @@ export const editMenu = (val) => {
 // delete menu
 
 export const deleteMenuItem = (val) => {
-
-
     fetch(firebaseURL + 'menu/items/' + val + '.json', {
         method: 'DELETE',
     }).then(
-        console.log(val,'Deleted')
+        console.log(val, 'Deleted')
     );
+}
 
+
+// Get menu items start
+export const getEditMenu = async (val) => {
+    const res = await fetch(firebaseURL + 'menu/items/' + val + '.json');
+    const data = await res.json();
+    return data;
 }
