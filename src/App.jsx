@@ -15,10 +15,11 @@ import EditMenu from './pages/menu/EditMenu';
 import ViewBooking from './pages/table_booking/ViewBooking';
 import ViewFeedback from './pages/feedback/ViewFeedback';
 import ViewOrder from './pages/order/ViewOrder';
+import { ToastContainer } from 'react-toastify';
 
 function App() {
 
-  return ( 
+  return (
     <>
 
       <BrowserRouter>
@@ -28,18 +29,19 @@ function App() {
 
             <Header />
             <Sidebar />
+            <ToastContainer />
 
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/order" element={<Order />} />
               <Route path="/view-order/:id" element={<ViewOrder />} />
               <Route path="/menu" element={<Menu />} />
-              <Route path="/customer-feedback" element={<CustomersFeedback/>} />
-              <Route path="/view-feedback/:id" element={<ViewFeedback/>} />
+              <Route path="/customer-feedback" element={<CustomersFeedback />} />
+              <Route path="/view-feedback/:id" element={<ViewFeedback />} />
               <Route path="/table-booking" element={<TableBooking />} />
               <Route path="/view-booking/:id" element={<ViewBooking />} />
-              <Route path="/add-menu" element={<AddMenu/>} />
-              <Route path="/edit-menu/:id" element={<EditMenu/>} />
+              <Route path="/add-menu" element={<AddMenu />} />
+              <Route path="/edit-menu/:id" element={<EditMenu />} />
             </Routes>
 
             {/* <Footer /> */}
