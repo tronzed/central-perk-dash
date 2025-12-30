@@ -3,6 +3,7 @@ import SectionHeader from "../../components/SectionHeader";
 
 import { getEditMenu, editMenu } from '../../utils/functions';
 import { useParams } from "react-router-dom";
+import { toast } from "react-toastify";
 
 export default function EditMenu() {
 
@@ -14,11 +15,25 @@ export default function EditMenu() {
 
     const { id } = useParams();
 
+    const handleSubmit = async (e) => {
 
-    function handleSubmit(e) {
         e.preventDefault();
+
         const data = { id, name, type, desc, price, status };
-        editMenu(data);
+
+        try {
+
+            await editMenu(data);
+            toast.success('Item Edited');
+
+        } catch (error) {
+            toast.error('unable to edit Item');
+            console.error(error);
+        }
+
+
+
+
     }
 
     const getEditItem = async () => {

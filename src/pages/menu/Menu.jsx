@@ -3,6 +3,7 @@ import SectionHeader from "../../components/SectionHeader";
 
 import { getMenu, deleteMenuItem } from '../../utils/functions'
 import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 
 export default function Menu() {
 
@@ -12,6 +13,28 @@ export default function Menu() {
         const data = await getMenu();
         setMenuData(data);
     };
+
+
+    const handleDel = async (val) => {
+
+        try {
+
+            const result = await deleteMenuItem(val);
+
+            if (result) {
+                toast.success('Item Deleted !');
+                getMenuItmes();
+
+            } else {
+                toast.error('Having trouble deleting item!');
+            }
+
+        } catch (error) {
+            console.error(error);
+        }
+
+    }
+
 
     useEffect(() => {
         (async () => {
@@ -24,7 +47,6 @@ export default function Menu() {
 
         <>
 
-            {console.log(menuData, 'asdasd====')}
 
             {/* Main Content */}
             <div className="main-content">
@@ -51,7 +73,7 @@ export default function Menu() {
                                                 <th>Food Type</th>
                                                 <th>Price</th>
                                                 <th>Status</th>
-                                                <th>Action</th>
+                                                <th style={{ width: '200px' }}>Action</th>
                                             </tr>
 
 
@@ -68,10 +90,10 @@ export default function Menu() {
                                                             <td>{value?.status ? <span class="badge badge-success">Available</span> : <span class="badge badge-danger">Out of Stock</span>}</td>
                                                             <td>
                                                                 <div className="table_action_box">
-                                                                    <button onClick={() => { deleteMenuItem(value?.id); getMenuItmes() }} className="btn btn-outline-danger">
+                                                                    <button onClick={() => { handleDel(value?.id); getMenuItmes() }} className="btn btn-outline-danger">
                                                                         Delete
                                                                     </button>
-                                                                    <Link to={'/edit-menu/'+value?.id} className="btn btn-outline-secondary">
+                                                                    <Link to={'/edit-menu/' + value?.id} className="btn btn-outline-secondary">
                                                                         Edit
                                                                     </Link>
                                                                 </div>

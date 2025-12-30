@@ -1,7 +1,8 @@
 import { useState } from "react";
 import SectionHeader from "../../components/SectionHeader";
 
-import {addMenu} from "../../utils/functions"
+import { addMenu } from "../../utils/functions"
+import { toast } from "react-toastify";
 
 export default function AddMenu() {
 
@@ -13,10 +14,18 @@ export default function AddMenu() {
     const [status, setStatus] = useState();
 
 
-    function handleSubmit(e) {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        const data = {name,type,desc,price,status};
-        addMenu(data);
+        const data = { name, type, desc, price, status };
+
+        try {
+            await addMenu(data);
+            toast.success('Great success!');
+        } catch (error) {
+            toast.error('having troble adding item');
+            console.error(error);
+        }
+
     }
 
 
@@ -45,6 +54,7 @@ export default function AddMenu() {
                                         <div className="form-group col-md-6">
                                             <label>Food Type</label>
                                             <select class="form-control form-control-sm" value={type} onChange={(e) => setType(e.target.value)}>
+                                                <option>Select</option>
                                                 <option>Veg</option>
                                                 <option>Non-Veg</option>
                                                 <option>Vegan</option>

@@ -24,3 +24,8 @@
 .hide_me {
     display: none;
 }
+
+.main-sidebar .sidebar-menu li a.active {
+    color: #6777ef;
+    border-left: 4px solid #6777ef; 
+}

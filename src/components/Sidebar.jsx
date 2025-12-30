@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 export default function Sidebar() {
     return (
@@ -15,29 +15,29 @@ export default function Sidebar() {
                     </div>
                     <ul className="sidebar-menu">
                         <li>
-                            <Link className="nav-link" to="/">
+                            <NavLink className="nav-link" to="/">
                                 <i className="fas fa-pencil-ruler" /> <span>Home</span>
-                            </Link>
+                            </NavLink>
                         </li>
                         <li>
-                            <Link className="nav-link" to="order">
+                            <NavLink className="nav-link" to="order">
                                 <i className="fas fa-pencil-ruler" /> <span>Order</span>
-                            </Link>
+                            </NavLink>
                         </li>
                         <li>
-                            <Link className="nav-link" to="menu">
+                            <NavLink className="nav-link" to="menu">
                                 <i className="fas fa-pencil-ruler" /> <span>Menu</span>
-                            </Link>
+                            </NavLink>
                         </li>
                         <li>
-                            <Link className="nav-link" to="customer-feedback">
+                            <NavLink className="nav-link" to="customer-feedback">
                                 <i className="fas fa-pencil-ruler" /> <span>Customer Feedback</span>
-                            </Link>
+                            </NavLink>
                         </li>
                         <li>
-                            <Link className="nav-link" to="table-booking">
+                            <NavLink className="nav-link" to="table-booking">
                                 <i className="fas fa-pencil-ruler" /> <span>Table Booking</span>
-                            </Link>
+                            </NavLink>
                         </li>
                     </ul>
                     
