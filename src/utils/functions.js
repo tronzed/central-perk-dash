@@ -1,6 +1,4 @@
 
-import { resume } from "react-dom/server";
-import { toast } from "react-toastify";
 const firebaseURL = import.meta.env.VITE_FIREBASE_DB_URL;
 
 // Get menu items start
