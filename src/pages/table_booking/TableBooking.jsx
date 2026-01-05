@@ -31,7 +31,6 @@ export default function TableBooking() {
                                                 <th>Table No</th>
                                                 <th>Date</th>
                                                 <th>Time</th>
-                                                <th>Booking Type</th>
                                                 <th>Status</th>
                                                 <th>Actions</th>
                                             </tr>
@@ -43,7 +42,7 @@ export default function TableBooking() {
                                                 <td>T-05</td>
                                                 <td>25 Dec 2025</td>
                                                 <td>7:30 PM</td>
-                                                <td>Dinner</td>
+                                                
                                                 <td><span class="badge badge-success">Confirmed</span></td>
                                                 <td>
                                                     <div className="table_action_box">
@@ -61,7 +60,7 @@ export default function TableBooking() {
                                                 <td>T-02</td>
                                                 <td>25 Dec 2025</td>
                                                 <td>8:00 PM</td>
-                                                <td>Dinner</td>
+                                                
                                                 <td><span class="badge badge-warning">Pending</span></td>
                                                 <td>
                                                     <div className="table_action_box">
@@ -79,7 +78,7 @@ export default function TableBooking() {
                                                 <td>T-08</td>
                                                 <td>26 Dec 2025</td>
                                                 <td>1:30 PM</td>
-                                                <td>Lunch</td>
+                                                
                                                 <td><span class="badge badge-info">Seated</span></td>
                                                 <td>
                                                     <div className="table_action_box">
@@ -97,7 +96,7 @@ export default function TableBooking() {
                                                 <td>T-03</td>
                                                 <td>26 Dec 2025</td>
                                                 <td>9:00 PM</td>
-                                                <td>Dinner</td>
+                                                
                                                 <td><span class="badge badge-danger">Cancelled</span></td>
                                                 <td>
                                                     <div className="table_action_box">
