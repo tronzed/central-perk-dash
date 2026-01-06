@@ -1,7 +1,29 @@
 import { Link } from "react-router-dom";
 import SectionHeader from "../../components/SectionHeader";
 
+import { getBookingDetails } from '../../utils/functions'
+import { useEffect, useState } from "react";
+
 export default function TableBooking() {
+
+    const [tabledata, setTabledata] = useState(null);
+
+    const getTableData = async () => {
+
+        const res = await getBookingDetails();
+
+        if (res) {
+            setTabledata(res);
+        }
+    }
+
+
+    useEffect(() => {
+
+        getTableData();
+
+    }, []);
+
 
     return (
 
@@ -34,77 +56,56 @@ export default function TableBooking() {
                                                 <th>Status</th>
                                                 <th>Actions</th>
                                             </tr>
-                                            <tr>
-                                                <td>#TB1001</td>
-                                                <td>Rahul Sharma</td>
-                                                <td>9876543210</td>
-                                                <td>4</td>
-                                                <td>T-05</td>
-                                                <td>25 Dec 2025</td>
-                                                <td>7:30 PM</td>
-                                                
-                                                <td><span class="badge badge-success">Confirmed</span></td>
-                                                <td>
-                                                    <div className="table_action_box">
-                                                        <a href="#" className="btn btn-outline-secondary">View</a>
-                                                        <a href="#" className="btn btn-outline-danger">Cancel</a>
-                                                    </div>
-                                                </td>
-                                            </tr>
 
-                                            <tr>
-                                                <td>#TB1002</td>
-                                                <td>Ananya Verma</td>
-                                                <td>9123456789</td>
-                                                <td>2</td>
-                                                <td>T-02</td>
-                                                <td>25 Dec 2025</td>
-                                                <td>8:00 PM</td>
-                                                
-                                                <td><span class="badge badge-warning">Pending</span></td>
-                                                <td>
-                                                    <div className="table_action_box">
-                                                        <a href="#" className="btn btn-outline-secondary">View</a>
-                                                        <a href="#" className="btn btn-outline-danger">Cancel</a>
-                                                    </div>
-                                                </td>
-                                            </tr>
 
-                                            <tr>
-                                                <td>#TB1003</td>
-                                                <td>Amit Patel</td>
-                                                <td>9988776655</td>
-                                                <td>6</td>
-                                                <td>T-08</td>
-                                                <td>26 Dec 2025</td>
-                                                <td>1:30 PM</td>
-                                                
-                                                <td><span class="badge badge-info">Seated</span></td>
-                                                <td>
-                                                    <div className="table_action_box">
-                                                        <a href="#" className="btn btn-outline-secondary">View</a>
-                                                        <a href="#" className="btn btn-outline-danger">Cancel</a>
-                                                    </div>
-                                                </td>
-                                            </tr>
+                                            {
 
-                                            <tr>
-                                                <td>#TB1004</td>
-                                                <td>Neha Singh</td>
-                                                <td>9090909090</td>
-                                                <td>3</td>
-                                                <td>T-03</td>
-                                                <td>26 Dec 2025</td>
-                                                <td>9:00 PM</td>
-                                                
-                                                <td><span class="badge badge-danger">Cancelled</span></td>
-                                                <td>
-                                                    <div className="table_action_box">
-                                                        <a href="#" className="btn btn-outline-secondary">View</a>
-                                                        <a href="#" className="btn btn-outline-danger">Cancel</a>
-                                                    </div>
-                                                </td>
-                                            </tr>
+
+                                                tabledata?.map((value, index) => (
+
+                                                    <>
+
+                                                        <tr key={index}>
+                                                            <td>#TB1001</td>
+                                                            <td>{value?.name}</td>
+                                                            <td>{value?.phone}</td>
+                                                            <td>{value?.peopleNo}</td>
+                                                            <td>{value?.tableNo}</td>
+                                                            <td>{value?.date}</td>
+                                                            <td>{value?.time}</td>
+                                                            <td>
+
+                                                                {
+                                                                    value?.time == "confirmed" ? (
+                                                                        <span className="badge badge-success">Confirmed</span>
+                                                                    ) : value?.time == "cancelled" ? (
+                                                                        <span className="badge badge-danger">Cancelled</span>
+                                                                    ) : (
+                                                                        <span className="badge badge-warning">Pending</span>
+                                                                    )
+                                                                }
+
+                                                            </td>
+
+                                                            <td>
+                                                                <div className="table_action_box">
+                                                                    <Link to={`/view-booking/${value?.id}`} className="btn btn-outline-secondary">View</Link>
+                                                                    <a href="#" className="btn btn-outline-danger">Cancel</a>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+
+                                                    </>
+
+                                                ))
+
+
+                                            }
+
+
+
+
+
 
                                         </tbody>
                                     </table>

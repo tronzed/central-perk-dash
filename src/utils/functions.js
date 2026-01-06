@@ -104,3 +104,34 @@ export const getEditMenu = async (val) => {
         return null;
     }
 }
+
+
+
+// 
+
+
+export const getBookingDetails = async () => {
+
+    try {
+
+        const res = await fetch(firebaseURL + 'tableBook.json');
+
+        if (!res.ok) {
+            throw new Error('Not able to get table booking data')
+        }
+
+        const data = await res.json();
+
+        const data2 = Object.entries(data).map(([key, value]) => ({
+            id: key,
+            ...value,
+        }))
+
+        return data2;
+
+    } catch (error) {
+        console.error(error);
+        return null;
+    }
+
+}
