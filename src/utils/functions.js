@@ -88,7 +88,7 @@ export const deleteMenuItem = async (val) => {
 }
 
 
-// Get menu items start
+// Get menu items 
 export const getEditMenu = async (val) => {
     try {
 
@@ -106,10 +106,7 @@ export const getEditMenu = async (val) => {
 }
 
 
-
-// 
-
-
+// get all booking details
 export const getBookingDetails = async () => {
 
     try {
@@ -132,6 +129,57 @@ export const getBookingDetails = async () => {
     } catch (error) {
         console.error(error);
         return null;
+    }
+
+}
+
+
+// get single booking details
+export const getSingleBookingDetails = async (val) => {
+
+    try {
+
+        const res = await fetch(firebaseURL + 'tableBook/' + val + '.json');
+
+        if (!res.ok) {
+            throw new Error('Not able to get table booking data')
+        }
+
+        const data = await res.json();
+
+        return data;
+
+    } catch (error) {
+        console.error(error);
+        return null;
+    }
+
+}
+
+
+// add status in bookings 
+
+export const addSingleBookingStatus = async (val) => {
+
+    console.log(val);
+
+    try {
+
+        const res = await fetch(firebaseURL + 'tableBook/' + val?.idBox + '.json', {
+            method: 'PATCH',
+            headers: { 'Content-type': 'application/json' },
+            body: JSON.stringify({ status: val?.status })
+        });
+
+        if (!res.ok) {
+            throw new Error('unable to add status');
+        }
+
+        return true
+
+    } catch (error) {
+        console.error(error)
+        return false
     }
 
 }

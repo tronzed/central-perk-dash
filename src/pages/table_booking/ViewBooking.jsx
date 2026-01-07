@@ -1,9 +1,29 @@
+import { useParams } from "react-router-dom";
 import SectionHeader from "../../components/SectionHeader";
+
+import { getSingleBookingDetails, addSingleBookingStatus } from '../../utils/functions'
+import { useEffect, useState } from "react";
 
 export default function ViewBooking() {
 
+
+    const { id } = useParams();
+
+    const [userData, setUserData] = useState();
+
+
+    const getBookingDetails = async () => {
+        const res = await getSingleBookingDetails(id);
+        setUserData(res);
+    }
+
+    useEffect(() => {
+        getBookingDetails();
+    }, [])
+
     return (
         <>
+
             {/* Main Content */}
             <div className="main-content">
                 <section className="section">
@@ -16,39 +36,45 @@ export default function ViewBooking() {
                                 <div className="row">
                                     <div className="col-lg-12">
                                         <div className="invoice-title">
-                                            <h2>Invoice</h2>
-                                            <div className="invoice-number">Order #12345</div>
+                                            <h2>Booking Table</h2>
+                                            <div className="invoice-number">ID: #TB1001</div>
                                         </div>
                                         <hr />
                                         <div className="row">
-                                            <div className="col-md-6">
-                                                <address>
-                                                    <strong>Billed To:</strong>
-                                                    <br />
-                                                    Ujang Maman
-                                                    <br />
-                                                    1234 Main
-                                                    <br />
-                                                    Apt. 4B
-                                                    <br />
-                                                    Bogor Barat, Indonesia
-                                                </address>
-                                            </div>
-                                            <div className="col-md-6 text-md-right">
-                                                <address>
-                                                    <strong>Shipped To:</strong>
-                                                    <br />
-                                                    Muhamad Nauval Azhar
-                                                    <br />
-                                                    1234 Main
-                                                    <br />
-                                                    Apt. 4B
-                                                    <br />
-                                                    Bogor Barat, Indonesia
-                                                </address>
+                                            <div className="col-md-12">
+
+                                                <div className="table_booking_detail_box">
+                                                    <ul>
+                                                        <li><b>Customer Name</b>{userData?.name}</li>
+                                                        <li><b>Phone</b>{userData?.phone}</li>
+                                                        <li><b>Email</b>{userData?.email}</li>
+                                                        <li><b>Guests Count</b>{userData?.peopleNo}</li>
+                                                        <li><b>Table No</b>{userData?.tableNo}</li>
+                                                        <li><b>Date</b>{userData?.date}</li>
+                                                        <li><b>Time</b>{userData?.time}</li>
+                                                        <li><b>Status</b>
+
+                                                            {
+
+
+                                                                userData?.status == "confirmed" ? (
+                                                                    <span className="badge badge-success">Confirmed</span>
+                                                                ) : userData?.status == "cancelled" ? (
+                                                                    <span className="badge badge-danger">Cancelled</span>
+                                                                ) : (
+                                                                    <span className="badge badge-warning">Pending</span>
+                                                                )
+
+
+                                                            }
+
+                                                        </li>
+                                                    </ul>
+                                                </div>
+
                                             </div>
                                         </div>
-                                        <div className="row">
+                                        <div className="row hide_me">
                                             <div className="col-md-6"></div>
                                             <div className="col-md-6 text-md-right">
                                                 <address>
@@ -62,7 +88,7 @@ export default function ViewBooking() {
                                         </div>
                                     </div>
                                 </div>
-                                <div className="row mt-4">
+                                <div className="row mt-4 hide_me">
                                     <div className="col-md-12">
                                         <div className="section-title">Order Summary</div>
                                         <p className="section-lead">All items here cannot be deleted.</p>
@@ -131,14 +157,14 @@ export default function ViewBooking() {
                             </div>
                             <hr />
                             <div className="text-md-right">
-                                <div className="float-lg-left mb-lg-0 mb-3">
-                                    <button className="btn btn-danger btn-icon icon-left">
+                                <div className="table_detail_bottom_button">
+                                    <button onClick={async () => { await addSingleBookingStatus({ idBox: id, status: 'cancelled' }); getBookingDetails(); }} className="btn btn-danger btn-icon icon-left">
                                         <i className="fas fa-times" /> Cancel
                                     </button>
+                                    <button onClick={async () => { await addSingleBookingStatus({ idBox: id, status: 'confirmed' }); getBookingDetails(); }} className="btn btn-success btn-icon icon-left">
+                                        <i className="fas fa-check" /> Approve
+                                    </button>
                                 </div>
-                                <button className="btn btn-warning btn-icon icon-left">
-                                    <i className="fas fa-print" /> Print
-                                </button>
                             </div>
                         </div>
                     </div>

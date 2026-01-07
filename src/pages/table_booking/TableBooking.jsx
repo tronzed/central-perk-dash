@@ -57,9 +57,7 @@ export default function TableBooking() {
                                                 <th>Actions</th>
                                             </tr>
 
-
                                             {
-
 
                                                 tabledata?.map((value, index) => (
 
@@ -76,9 +74,9 @@ export default function TableBooking() {
                                                             <td>
 
                                                                 {
-                                                                    value?.time == "confirmed" ? (
+                                                                    value?.status == "confirmed" ? (
                                                                         <span className="badge badge-success">Confirmed</span>
-                                                                    ) : value?.time == "cancelled" ? (
+                                                                    ) : value?.status == "cancelled" ? (
                                                                         <span className="badge badge-danger">Cancelled</span>
                                                                     ) : (
                                                                         <span className="badge badge-warning">Pending</span>
@@ -94,18 +92,9 @@ export default function TableBooking() {
                                                                 </div>
                                                             </td>
                                                         </tr>
-
                                                     </>
-
                                                 ))
-
-
                                             }
-
-
-
-
-
 
                                         </tbody>
                                     </table>
