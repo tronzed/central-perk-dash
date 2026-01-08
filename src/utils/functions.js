@@ -183,3 +183,10 @@ export const addSingleBookingStatus = async (val) => {
     }
 
 }
+
+
+// Timestamp + Random Number (Recommended)
+
+export const createOrderId = (val) => {
+  return `${val}-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 5)}`;
+};
