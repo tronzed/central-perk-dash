@@ -3,6 +3,7 @@ import SectionHeader from "../../components/SectionHeader";
 
 import { getSingleBookingDetails, addSingleBookingStatus } from '../../utils/functions'
 import { useEffect, useState } from "react";
+import Loader from "../../components/Loader";
 
 export default function ViewBooking() {
 
@@ -11,10 +12,20 @@ export default function ViewBooking() {
 
     const [userData, setUserData] = useState();
 
+    const [showLoader, setShowLoader] = useState(true);
+
+
+    const setStatus = async (val) => {
+        await addSingleBookingStatus({ idBox: id, status: val });
+        getBookingDetails();
+        setShowLoader(true);
+    }
+
 
     const getBookingDetails = async () => {
         const res = await getSingleBookingDetails(id);
         setUserData(res);
+        setShowLoader(false)
     }
 
     useEffect(() => {
@@ -24,13 +35,18 @@ export default function ViewBooking() {
     return (
         <>
 
+
             {/* Main Content */}
             <div className="main-content">
+
                 <section className="section">
 
                     <SectionHeader />
 
                     <div className="section-body">
+
+                        <Loader show={showLoader} />
+
                         <div className="invoice">
                             <div className="invoice-print">
                                 <div className="row">
@@ -158,10 +174,10 @@ export default function ViewBooking() {
                             <hr />
                             <div className="text-md-right">
                                 <div className="table_detail_bottom_button">
-                                    <button onClick={async () => { await addSingleBookingStatus({ idBox: id, status: 'cancelled' }); getBookingDetails(); }} className="btn btn-danger btn-icon icon-left">
+                                    <button onClick={() => setStatus('cancelled')} className="btn btn-danger btn-icon icon-left">
                                         <i className="fas fa-times" /> Cancel
                                     </button>
-                                    <button onClick={async () => { await addSingleBookingStatus({ idBox: id, status: 'confirmed' }); getBookingDetails(); }} className="btn btn-success btn-icon icon-left">
+                                    <button onClick={() => setStatus('confirmed')} className="btn btn-success btn-icon icon-left">
                                         <i className="fas fa-check" /> Approve
                                     </button>
                                 </div>
@@ -170,8 +186,8 @@ export default function ViewBooking() {
                     </div>
 
 
-                </section>
-            </div>
+                </section >
+            </div >
 
         </>
 

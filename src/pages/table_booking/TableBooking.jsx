@@ -3,6 +3,7 @@ import SectionHeader from "../../components/SectionHeader";
 
 import { getBookingDetails } from '../../utils/functions'
 import { useEffect, useState } from "react";
+import Loader from "../../components/Loader";
 
 export default function TableBooking() {
 
@@ -31,6 +32,9 @@ export default function TableBooking() {
 
             {/* Main Content */}
             <div className="main-content">
+
+                <Loader/>
+
                 <section className="section">
 
                     <SectionHeader />
