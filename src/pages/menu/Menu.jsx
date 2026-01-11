@@ -112,7 +112,7 @@ export default function Menu() {
                                     </table>
                                 </div>
                             </div>
-                            
+
                             <div className="card-footer text-right">
                                 <nav className="d-inline-block">
                                     <ul className="pagination mb-0">
