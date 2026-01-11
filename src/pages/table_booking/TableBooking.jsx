@@ -33,7 +33,7 @@ export default function TableBooking() {
             {/* Main Content */}
             <div className="main-content">
 
-                <Loader/>
+                <Loader />
 
                 <section className="section">
 
@@ -68,31 +68,31 @@ export default function TableBooking() {
                                                     <>
 
                                                         <tr key={index}>
-                                                            <td>#TB1001</td>
-                                                            <td>{value?.name}</td>
-                                                            <td>{value?.phone}</td>
-                                                            <td>{value?.peopleNo}</td>
-                                                            <td>{value?.tableNo}</td>
-                                                            <td>{value?.date}</td>
-                                                            <td>{value?.time}</td>
+                                                            <td>{value?.idBox || 'N/A'}</td>
+                                                            <td>{value?.name || 'N/A'}</td>
+                                                            <td>{value?.phone || 'N/A'}</td>
+                                                            <td>{value?.peopleNo || 'N/A'}</td>
+                                                            <td>{value?.tableNo || 'N/A'}</td>
+                                                            <td>{value?.date || 'N/A'}</td>
+                                                            <td>{value?.time || 'N/A'}</td>
                                                             <td>
-
                                                                 {
                                                                     value?.status == "confirmed" ? (
                                                                         <span className="badge badge-success">Confirmed</span>
                                                                     ) : value?.status == "cancelled" ? (
                                                                         <span className="badge badge-danger">Cancelled</span>
+                                                                    ) : value?.status == "complete" ? (
+                                                                        <span className="badge badge-primary">Complete</span>
                                                                     ) : (
                                                                         <span className="badge badge-warning">Pending</span>
                                                                     )
                                                                 }
-
                                                             </td>
 
                                                             <td>
                                                                 <div className="table_action_box">
                                                                     <Link to={`/view-booking/${value?.id}`} className="btn btn-outline-secondary">View</Link>
-                                                                    <a href="#" className="btn btn-outline-danger">Cancel</a>
+                                                                    {/* <a href="#" className="btn btn-outline-danger">Cancel</a> */}
                                                                 </div>
                                                             </td>
                                                         </tr>

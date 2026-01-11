@@ -84,9 +84,9 @@ export default function Menu() {
 
                                                         <tr key={key}>
                                                             <td>{key + 1}</td>
-                                                            <td>{value?.name}</td>
-                                                            <td>{value?.type}</td>
-                                                            <td>{value?.price}</td>
+                                                            <td>{value?.name || 'N/A'}</td>
+                                                            <td>{value?.type || 'N/A'}</td>
+                                                            <td>{value?.price || 'N/A'}</td>
                                                             <td>{value?.status ? <span class="badge badge-success">Available</span> : <span class="badge badge-danger">Out of Stock</span>}</td>
                                                             <td>
                                                                 <div className="table_action_box">

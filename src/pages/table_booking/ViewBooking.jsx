@@ -53,7 +53,7 @@ export default function ViewBooking() {
                                     <div className="col-lg-12">
                                         <div className="invoice-title">
                                             <h2>Booking Table</h2>
-                                            <div className="invoice-number">ID: #TB1001</div>
+                                            <div className="invoice-number">ID: {userData?.idBox || 'N/A'}</div>
                                         </div>
                                         <hr />
                                         <div className="row">
@@ -61,26 +61,26 @@ export default function ViewBooking() {
 
                                                 <div className="table_booking_detail_box">
                                                     <ul>
-                                                        <li><b>Customer Name</b>{userData?.name}</li>
-                                                        <li><b>Phone</b>{userData?.phone}</li>
-                                                        <li><b>Email</b>{userData?.email}</li>
-                                                        <li><b>Guests Count</b>{userData?.peopleNo}</li>
-                                                        <li><b>Table No</b>{userData?.tableNo}</li>
-                                                        <li><b>Date</b>{userData?.date}</li>
-                                                        <li><b>Time</b>{userData?.time}</li>
+                                                        <li><b>Customer Name</b>{userData?.name || 'N/A'}</li>
+                                                        <li><b>Phone</b>{userData?.phone || 'N/A'}</li>
+                                                        <li><b>Email</b>{userData?.email || 'N/A'}</li>
+                                                        <li><b>Guests Count</b>{userData?.peopleNo || 'N/A'}</li>
+                                                        <li><b>Table No</b>{userData?.tableNo || 'N/A'}</li>
+                                                        <li><b>Date</b>{userData?.date || 'N/A'}</li>
+                                                        <li><b>Time</b>{userData?.time || 'N/A'}</li>
                                                         <li><b>Status</b>
 
                                                             {
-
 
                                                                 userData?.status == "confirmed" ? (
                                                                     <span className="badge badge-success">Confirmed</span>
                                                                 ) : userData?.status == "cancelled" ? (
                                                                     <span className="badge badge-danger">Cancelled</span>
+                                                                ) : userData?.status == "complete" ? (
+                                                                    <span className="badge badge-primary">Complete</span>
                                                                 ) : (
                                                                     <span className="badge badge-warning">Pending</span>
                                                                 )
-
 
                                                             }
 
@@ -173,14 +173,32 @@ export default function ViewBooking() {
                             </div>
                             <hr />
                             <div className="text-md-right">
+
                                 <div className="table_detail_bottom_button">
-                                    <button onClick={() => setStatus('cancelled')} className="btn btn-danger btn-icon icon-left">
-                                        <i className="fas fa-times" /> Cancel
-                                    </button>
-                                    <button onClick={() => setStatus('confirmed')} className="btn btn-success btn-icon icon-left">
-                                        <i className="fas fa-check" /> Approve
-                                    </button>
+
+                                    {
+
+                                        userData?.status === "confirmed" ?
+                                            (<>
+                                                <button onClick={() => setStatus('complete')} className="btn btn-primary btn-icon icon-left">
+                                                    <i className="fas fa-check" /> Complete
+                                                </button>
+                                            </>) : userData?.status === "cancelled" ? (<>
+                                            </>) : userData?.status === "complete" ? (
+                                                <></>
+                                            ) : (<>
+                                                <button onClick={() => setStatus('cancelled')} className="btn btn-danger btn-icon icon-left">
+                                                    <i className="fas fa-times" /> Cancel
+                                                </button>
+                                                <button onClick={() => setStatus('confirmed')} className="btn btn-success btn-icon icon-left">
+                                                    <i className="fas fa-check" /> Approve
+                                                </button>
+                                            </>)
+
+                                    }
+
                                 </div>
+
                             </div>
                         </div>
                     </div>
