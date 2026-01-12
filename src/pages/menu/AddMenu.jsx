@@ -13,7 +13,7 @@ export default function AddMenu() {
     const [price, setPrice] = useState();
     const [status, setStatus] = useState();
     const [img, setImg] = useState();
-
+    const [imgUrlBox, setImgUrlBox] = useState();
 
     const handleSubmit = async (e) => {
 
@@ -45,6 +45,11 @@ export default function AddMenu() {
             console.error(error);
         }
 
+    }
+
+
+    function setUpFormImg(e) {
+        setImgUrlBox(URL.createObjectURL(e.target.files[0]));
     }
 
 
@@ -81,11 +86,22 @@ export default function AddMenu() {
                                         </div>
                                     </div>
 
-                                    <div className="form-group">
-                                        <label>Item Image</label>
-                                        <div className="custom-file">
-                                            <input type="file" onChange={(e) => setImg(e.target.files[0])} className="custom-file-input" id="customFile" />
-                                            <label className="custom-file-label" for="customFile">Choose file</label>
+                                    <div className="upload_img_box">
+
+                                        {imgUrlBox && (
+                                            <>
+                                                <div className="img_box">
+                                                    <img className="img-responsive" src={imgUrlBox} alt="product img" />
+                                                </div>
+                                            </>
+                                        )}
+
+                                        <div className="form-group">
+                                            <label>Item Image</label>
+                                            <div className="custom-file">
+                                                <input disabled={imgUrlBox ? true : false} type="file" onChange={(e) => { setImg(e.target.files[0]); setUpFormImg(e) }} className="custom-file-input" id="customFile" />
+                                                <label className="custom-file-label" for="customFile">Choose file</label>
+                                            </div>
                                         </div>
                                     </div>
 
