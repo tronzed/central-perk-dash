@@ -12,11 +12,30 @@ export default function AddMenu() {
     const [desc, setDesc] = useState();
     const [price, setPrice] = useState();
     const [status, setStatus] = useState();
+    const [img, setImg] = useState();
 
 
     const handleSubmit = async (e) => {
+
         e.preventDefault();
-        const data = { name, type, desc, price, status };
+
+        const formData = new FormData();
+        formData.append('file', img);
+        formData.append("upload_preset", "tron_file_zed");
+        formData.append("folder", "central-perk");
+
+        const res = await fetch('https://api.cloudinary.com/v1_1/dyxkr50bl/image/upload', {
+            method: 'POST',
+            body: formData,
+        });
+
+        const imgBox = await res.json();
+
+        const imgUrl = imgBox.secure_url;
+
+        console.log(imgBox, 'wwwwwwwwwwwww');
+
+        const data = { name, type, desc, price, status, imgUrl };
 
         try {
             await addMenu(data);
@@ -65,7 +84,7 @@ export default function AddMenu() {
                                     <div className="form-group">
                                         <label>Item Image</label>
                                         <div className="custom-file">
-                                            <input type="file" className="custom-file-input" id="customFile" />
+                                            <input type="file" onChange={(e) => setImg(e.target.files[0])} className="custom-file-input" id="customFile" />
                                             <label className="custom-file-label" for="customFile">Choose file</label>
                                         </div>
                                     </div>
