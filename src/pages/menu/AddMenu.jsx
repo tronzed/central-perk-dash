@@ -3,9 +3,10 @@ import SectionHeader from "../../components/SectionHeader";
 
 import { addMenu } from "../../utils/functions"
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
+import Loader from "../../components/Loader";
 
 export default function AddMenu() {
-
 
     const [name, setName] = useState();
     const [type, setType] = useState();
@@ -14,33 +15,52 @@ export default function AddMenu() {
     const [status, setStatus] = useState();
     const [img, setImg] = useState();
     const [imgUrlBox, setImgUrlBox] = useState();
+    const [showLoader, setShowLoader] = useState();
+
+
+    const nav = useNavigate();
 
     const handleSubmit = async (e) => {
 
         e.preventDefault();
 
-        const formData = new FormData();
-        formData.append('file', img);
-        formData.append("upload_preset", "tron_file_zed");
-        formData.append("folder", "central-perk");
-
-        const res = await fetch('https://api.cloudinary.com/v1_1/dyxkr50bl/image/upload', {
-            method: 'POST',
-            body: formData,
-        });
-
-        const imgBox = await res.json();
-
-        const imgUrl = imgBox.secure_url;
-
-        console.log(imgBox, 'wwwwwwwwwwwww');
-
-        const data = { name, type, desc, price, status, imgUrl };
+        let imgUrl = "";
 
         try {
+
+            if (img != null) {
+
+                const formData = new FormData();
+                formData.append('file', img);
+                formData.append("upload_preset", "tron_file_zed");
+                formData.append("folder", "central-perk");
+
+                const res = await fetch('https://api.cloudinary.com/v1_1/dyxkr50bl/image/upload', {
+                    method: 'POST',
+                    body: formData,
+                });
+
+                if (!res.ok) {
+                    throw new Error('having issue uploading img');
+                }
+
+                const imgBox = await res.json();
+                imgUrl = imgBox.secure_url;
+
+            }
+
+
+            const data = { name, type, desc, price, status, imgUrl };
+
             await addMenu(data);
             toast.success('Great success!');
-        } catch (error) {
+
+            setShowLoader(false);
+
+            nav('/menu');
+
+        }
+        catch (error) {
             toast.error('having troble adding item');
             console.error(error);
         }
@@ -64,6 +84,7 @@ export default function AddMenu() {
                     <SectionHeader />
 
                     <div className="section-body">
+                        <Loader show={showLoader} />
                         <div className="card">
                             <div className="card-header">
                                 <h4>Add</h4>
@@ -87,11 +108,11 @@ export default function AddMenu() {
                                     </div>
 
                                     <div className="upload_img_box">
-
                                         {imgUrlBox && (
                                             <>
                                                 <div className="img_box">
-                                                    <img className="img-responsive" src={imgUrlBox} alt="product img" />
+                                                    <img className="img-res" src={imgUrlBox} alt="product img" />
+                                                    <button onClick={() => setImgUrlBox("")}>X</button>
                                                 </div>
                                             </>
                                         )}
@@ -138,7 +159,7 @@ export default function AddMenu() {
 
                                 </div>
                                 <div className="card-footer text-right">
-                                    <button className="btn btn-primary mr-1" type="submit">Add</button>
+                                    <button className="btn btn-primary mr-1" type="submit" onClick={() => setShowLoader(true)}>Add</button>
                                 </div>
 
                             </form>

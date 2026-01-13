@@ -4,6 +4,7 @@ import SectionHeader from "../../components/SectionHeader";
 import { getEditMenu, editMenu } from '../../utils/functions';
 import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
+import Loader from "../../components/Loader";
 
 export default function EditMenu() {
 
@@ -12,6 +13,9 @@ export default function EditMenu() {
     const [desc, setDesc] = useState();
     const [price, setPrice] = useState();
     const [status, setStatus] = useState();
+    const [img, setImg] = useState();
+    const [imgUrlBox, setImgUrlBox] = useState();
+    const [showLoader, setShowLoader] = useState(true);
 
     const { id } = useParams();
 
@@ -19,35 +23,60 @@ export default function EditMenu() {
 
         e.preventDefault();
 
-        const data = { id, name, type, desc, price, status };
-
         try {
+
+            let imgUrl = "";
+
+            if (img != null) {
+
+                const formData = new FormData();
+                formData.append('file', img);
+                formData.append("upload_preset", "tron_file_zed");
+                formData.append("folder", "central-perk");
+
+                const res = await fetch('https://api.cloudinary.com/v1_1/dyxkr50bl/image/upload', {
+                    method: 'POST',
+                    body: formData,
+                });
+
+                if (!res.ok) {
+                    throw new Error('having issue uploading img');
+                }
+
+                const imgBox = await res.json();
+                imgUrl = imgBox.secure_url
+
+            }
+
+
+            const data = { id, name, type, desc, price, status, imgUrl };
 
             await editMenu(data);
             toast.success('Item Edited');
+            setShowLoader(false);
 
         } catch (error) {
             toast.error('unable to edit Item');
             console.error(error);
         }
 
+    }
 
-
-
+    function setUpFormImg(e) {
+        setImgUrlBox(URL.createObjectURL(e.target.files[0]));
     }
 
     const getEditItem = async () => {
 
         const data = await getEditMenu(id);
 
-        console.log(data);
-
         setName(data.name);
         setType(data.type);
         setDesc(data.desc);
         setPrice(data.price);
         setStatus(data.status);
-
+        setImgUrlBox(data.imgUrl);
+        setShowLoader(false);
     }
 
     useEffect(() => {
@@ -65,6 +94,8 @@ export default function EditMenu() {
                     <SectionHeader />
 
                     <div className="section-body">
+                        <Loader show={showLoader} />
+
                         <div className="card">
                             <div className="card-header">
                                 <h4>Input Text</h4>
@@ -88,11 +119,22 @@ export default function EditMenu() {
                                         </div>
                                     </div>
 
-                                    <div className="form-group">
-                                        <label>Item Image</label>
-                                        <div className="custom-file">
-                                            <input type="file" className="custom-file-input" id="customFile" />
-                                            <label className="custom-file-label" for="customFile">Choose file</label>
+                                    <div className="upload_img_box">
+                                        {imgUrlBox && (
+                                            <>
+                                                <div className="img_box">
+                                                    <img className="img-res" src={imgUrlBox} alt="product img" />
+                                                    <button onClick={() => { setImgUrlBox(""); setImg(null) }}>X</button>
+                                                </div>
+                                            </>
+                                        )}
+
+                                        <div className="form-group">
+                                            <label>Item Image</label>
+                                            <div className="custom-file">
+                                                <input disabled={imgUrlBox ? true : false} type="file" onChange={(e) => { setImg(e.target.files[0]); setUpFormImg(e) }} className="custom-file-input" id="customFile" />
+                                                <label className="custom-file-label" for="customFile">Choose file</label>
+                                            </div>
                                         </div>
                                     </div>
 
@@ -129,7 +171,7 @@ export default function EditMenu() {
 
                                 </div>
                                 <div className="card-footer text-right">
-                                    <button className="btn btn-primary mr-1" type="submit">Update</button>
+                                    <button className="btn btn-primary mr-1" type="submit" onClick={() => setShowLoader(true)}>Update</button>
                                 </div>
 
                             </form>
