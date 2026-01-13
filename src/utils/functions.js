@@ -182,11 +182,40 @@ export const addSingleBookingStatus = async (val) => {
         return false
     }
 
-}   
+}
 
 
 // Timestamp + Random Number (Recommended)
 
 export const createOrderId = (val) => {
-  return `${val}-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 5)}`;
+    return `${val}-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 5)}`;
 };
+
+
+export const getOrder = async () => {
+
+    try {
+
+        const res = await fetch(`${firebaseURL}order.json`);
+
+        if (!res.ok) {
+            throw new Error('unable to get order data');
+        }
+
+        const data = await res.json();
+
+        const data2 = Object.entries(data).map(([key, value]) => ({
+            id: key,
+            ...value
+        }))
+
+        console.log(data2, 'orderorderorderorderorder');
+
+        return data2;
+
+    } catch (error) {
+        console.error(error);
+        return null;
+    }
+
+}

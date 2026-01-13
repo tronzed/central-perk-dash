@@ -1,7 +1,26 @@
 import { Link } from "react-router-dom";
 import SectionHeader from "../../components/SectionHeader";
+import { useEffect, useState } from "react";
+
+import { getOrder } from '../../utils/functions'
 
 export default function Order() {
+
+
+    const [data, setData] = useState();
+
+    const getData = async () => {
+
+        const data = await getOrder();
+
+        setData(data);
+
+    }
+
+
+    useEffect(() => {
+        getData();
+    });
 
     return (
 
@@ -21,7 +40,62 @@ export default function Order() {
                             </div>
                             <div className="card-body p-0">
                                 <div className="table-responsive">
+
                                     <table className="table table-striped table-md">
+                                        <tbody>
+                                            <tr>
+                                                <th>Order ID</th>
+                                                <th>Customer Name</th>
+                                                <th>Items</th>
+                                                <th>Total Amount (₹)</th>
+                                                <th>Order Type</th>
+                                                <th>Order Status</th>
+                                                <th>Order Date</th>
+                                                <th>Actions</th>
+                                            </tr>
+
+                                            {
+                                                data?.map((value, key) => (
+                                                    <>
+                                                        <tr>
+                                                            <td>{value?.orderId || 'N/A'}</td>
+                                                            <td>John Doe</td>
+
+                                                            <td> {
+
+                                                                value?.cartData?.map((value, key) => (
+                                                                    <>
+                                                                        {value?.name + ', ' || "N/A"}
+                                                                    </>
+                                                                ))
+
+                                                            } </td>
+
+                                                            <td>${value?.total || "N/A"}</td>
+                                                            <td>{value?.orderType || "N/A"}</td>
+                                                            <td><span class="badge badge-warning">Preparing</span></td>
+                                                            <td>22 Dec 2025, 7:45 PM</td>
+                                                            <td>
+                                                                <div className="table_action_box">
+                                                                    <a href="#" className="btn btn-outline-danger">
+                                                                        Delete
+                                                                    </a>
+                                                                    <Link to={'/view-order/' + value?.id} className="btn btn-outline-secondary">
+                                                                        Update
+                                                                    </Link>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                    </>
+                                                ))
+
+                                            }
+
+
+                                        </tbody>
+                                    </table>
+
+                                    <table className="table table-striped table-md hide_me">
                                         <tbody>
                                             <tr>
                                                 <th>Order ID</th>
@@ -57,7 +131,7 @@ export default function Order() {
                                                 <td>John Doe</td>
                                                 <td>Paneer Pizza ×1, Garlic Bread ×1</td>
                                                 <td>599</td>
-                                                
+
                                                 <td>Delivery</td>
                                                 <td><span class="badge badge-info">Out for Delivery</span></td>
                                                 <td>22 Dec 2025, 8:10 PM</td>
@@ -90,8 +164,8 @@ export default function Order() {
                                                 <td>John Doe</td>
                                                 <td>Chicken Wrap ×1, Cold Coffee ×1</td>
                                                 <td>329</td>
-                                                
-                                                
+
+
                                                 <td>Delivery</td>
                                                 <td><span class="badge badge-primary">Ready</span></td>
                                                 <td>22 Dec 2025, 8:40 PM</td>
