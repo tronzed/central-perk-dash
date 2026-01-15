@@ -10,17 +10,15 @@ export default function Order() {
     const [data, setData] = useState();
 
     const getData = async () => {
-
         const data = await getOrder();
-
         setData(data);
-
     }
-
 
     useEffect(() => {
         getData();
-    });
+    },[]);
+
+
 
     return (
 
@@ -77,11 +75,8 @@ export default function Order() {
                                                             <td>22 Dec 2025, 7:45 PM</td>
                                                             <td>
                                                                 <div className="table_action_box">
-                                                                    <a href="#" className="btn btn-outline-danger">
-                                                                        Delete
-                                                                    </a>
                                                                     <Link to={'/view-order/' + value?.id} className="btn btn-outline-secondary">
-                                                                        Update
+                                                                        View
                                                                     </Link>
                                                                 </div>
                                                             </td>

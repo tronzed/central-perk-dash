@@ -192,6 +192,7 @@ export const createOrderId = (val) => {
 };
 
 
+// get order start
 export const getOrder = async () => {
 
     try {
@@ -215,6 +216,26 @@ export const getOrder = async () => {
 
     } catch (error) {
         console.error(error);
+        return null;
+    }
+
+}
+
+
+export const getSingleOrder = async (val) => {
+
+    try {
+
+        const res = await fetch(`${firebaseURL}order/${val}.json`);
+
+        if (!res.ok) {
+            throw new Error('unable to get single order data');
+        }
+
+        return await res.json();
+
+    } catch (error) {
+        console.log(error);
         return null;
     }
 
