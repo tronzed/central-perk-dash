@@ -210,8 +210,6 @@ export const getOrder = async () => {
             ...value
         }))
 
-        console.log(data2, 'orderorderorderorderorder');
-
         return data2;
 
     } catch (error) {
