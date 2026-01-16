@@ -225,7 +225,6 @@ export const getOrder = async () => {
 export const getSingleOrder = async (val) => {
 
     try {
-
         const res = await fetch(`${firebaseURL}order/${val}.json`);
 
         if (!res.ok) {
@@ -233,7 +232,6 @@ export const getSingleOrder = async (val) => {
         }
 
         return await res.json();
-
     } catch (error) {
         console.log(error);
         return null;
