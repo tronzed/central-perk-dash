@@ -16,7 +16,7 @@ export default function Order() {
 
     useEffect(() => {
         getData();
-    },[]);
+    }, []);
 
 
 
@@ -71,8 +71,20 @@ export default function Order() {
 
                                                             <td>${value?.total || "N/A"}</td>
                                                             <td>{value?.orderType || "N/A"}</td>
-                                                            <td><span class="badge badge-warning">Preparing</span></td>
-                                                            <td>22 Dec 2025, 7:45 PM</td>
+                                                            <td>
+                                                                {
+                                                                    value?.status == "confirmed" ? (
+                                                                        <span className="badge badge-success">Confirmed</span>
+                                                                    ) : value?.status == "cancelled" ? (
+                                                                        <span className="badge badge-danger">Cancelled</span>
+                                                                    ) : value?.status == "complete" ? (
+                                                                        <span className="badge badge-primary">Complete</span>
+                                                                    ) : (
+                                                                        <span className="badge badge-warning">Pending</span>
+                                                                    )
+                                                                }
+                                                            </td>
+                                                            <td>{value?.date || "N/A"}, {value?.time || "N/A"}</td>
                                                             <td>
                                                                 <div className="table_action_box">
                                                                     <Link to={'/view-order/' + value?.id} className="btn btn-outline-secondary">

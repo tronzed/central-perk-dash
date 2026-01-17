@@ -219,7 +219,7 @@ export const getOrder = async () => {
 
 }
 
-
+// get singler order  
 export const getSingleOrder = async (val) => {
 
     try {
@@ -233,6 +233,31 @@ export const getSingleOrder = async (val) => {
     } catch (error) {
         console.log(error);
         return null;
+    }
+
+}
+
+// add status in bookings 
+
+export const addSingleOrderStatus = async (val) => {
+
+    try {
+
+        const res = await fetch(firebaseURL + 'order/' + val?.idBox + '.json', {
+            method: 'PATCH',
+            headers: { 'Content-type': 'application/json' },
+            body: JSON.stringify({ status: val?.status })
+        });
+
+        if (!res.ok) {
+            throw new Error('unable to add status');
+        }
+
+        return true
+
+    } catch (error) {
+        console.error(error)
+        return false
     }
 
 }

@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import SectionHeader from "../../components/SectionHeader";
 import { useParams } from "react-router-dom";
+import Loader from "../../components/Loader";
 
-import { getSingleOrder } from '../../utils/functions'
+import { getSingleOrder, addSingleOrderStatus } from '../../utils/functions'
 
 export default function ViewOrder() {
 
@@ -10,14 +11,19 @@ export default function ViewOrder() {
     const { id } = useParams();
 
     const [userData, setUserData] = useState();
-    const [status, setStatus] = useState();
 
+    const [showLoader, setShowLoader] = useState(true);
 
     const getData = async () => {
-
         const data = await getSingleOrder(id);
         setUserData(data);
+        setShowLoader(false);
+    }
 
+    const setStatus = async (val) => {
+        await addSingleOrderStatus({ idBox: id, status: val });
+        getData();
+        setShowLoader(true);
     }
 
     useEffect(() => {
@@ -31,11 +37,13 @@ export default function ViewOrder() {
 
             {/* Main Content */}
             <div className="main-content">
+
                 <section className="section">
 
                     <SectionHeader />
 
                     <div className="section-body">
+                        <Loader show={showLoader} />
 
                         <div className="invoice">
                             <div className="invoice-print">
