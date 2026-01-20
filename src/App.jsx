@@ -16,6 +16,8 @@ import ViewBooking from './pages/table_booking/ViewBooking';
 import ViewFeedback from './pages/feedback/ViewFeedback';
 import ViewOrder from './pages/order/ViewOrder';
 import { ToastContainer } from 'react-toastify';
+import Login from './pages/authbox/Login';
+import SignUp from './pages/authbox/SignUp';
 
 function App() {
 
@@ -42,7 +44,13 @@ function App() {
               <Route path="/view-booking/:id" element={<ViewBooking />} />
               <Route path="/add-menu" element={<AddMenu />} />
               <Route path="/edit-menu/:id" element={<EditMenu />} />
+            
+              <Route path="/login" element={<Login />} />
+              <Route path="/sign-up" element={<SignUp />} />
+
+            
             </Routes>
+
 
             {/* <Footer /> */}
 
