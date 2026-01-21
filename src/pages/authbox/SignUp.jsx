@@ -1,5 +1,33 @@
+import { useState } from "react";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+
+import { auth } from '../../firebase';
+import { Link } from "react-router-dom";
 
 export default function SignUp() {
+
+    const [email, setEmail] = useState();
+    const [password, setPassword] = useState();
+
+    const handleSubmit = async (e) => {
+
+        e.preventDefault();
+
+        try {
+
+            const res = await createUserWithEmailAndPassword(
+                auth,
+                email,
+                password
+            );
+
+            console.log(res);
+
+        } catch (error) {
+            console.error(error);
+        }
+
+    }
 
     return (
 
@@ -9,7 +37,7 @@ export default function SignUp() {
             <section className="section">
                 <div className="container mt-5">
                     <div className="row">
-                        <div className="col-12 col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-8 offset-lg-2 col-xl-8 offset-xl-2">
+                        <div className="col-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3 col-lg-6 offset-lg-3 col-xl-4 offset-xl-4">
                             <div className="login-brand">
                                 <img
                                     src="assets/img/stisla-fill.svg"
@@ -20,31 +48,13 @@ export default function SignUp() {
                             </div>
                             <div className="card card-primary">
                                 <div className="card-header">
-                                    <h4>Register</h4>
+                                    <h4>Sign Up</h4>
                                 </div>
                                 <div className="card-body">
-                                    <form method="POST">
-                                        <div className="row">
-                                            <div className="form-group col-6">
-                                                <label htmlFor="frist_name">First Name</label>
-                                                <input
-                                                    id="frist_name"
-                                                    type="text"
-                                                    className="form-control"
-                                                    name="frist_name"
-                                                    autofocus=""
-                                                />
-                                            </div>
-                                            <div className="form-group col-6">
-                                                <label htmlFor="last_name">Last Name</label>
-                                                <input
-                                                    id="last_name"
-                                                    type="text"
-                                                    className="form-control"
-                                                    name="last_name"
-                                                />
-                                            </div>
-                                        </div>
+                                    <form
+                                        onSubmit={(e) => { handleSubmit(e) }}
+                                        className="needs-validation"
+                                    >
                                         <div className="form-group">
                                             <label htmlFor="email">Email</label>
                                             <input
@@ -52,78 +62,52 @@ export default function SignUp() {
                                                 type="email"
                                                 className="form-control"
                                                 name="email"
+                                                tabIndex={1}
+                                                required=""
+                                                autofocus=""
+                                                value={email}
+                                                onChange={(e) => { setEmail(e.target.value) }}
                                             />
-                                            <div className="invalid-feedback"></div>
+                                            <div className="invalid-feedback">
+                                                Please fill in your email
+                                            </div>
                                         </div>
-                                        <div className="row">
-                                            <div className="form-group col-6">
-                                                <label htmlFor="password" className="d-block">
+                                        <div className="form-group">
+                                            <div className="d-block">
+                                                <label htmlFor="password" className="control-label">
                                                     Password
                                                 </label>
-                                                <input
-                                                    id="password"
-                                                    type="password"
-                                                    className="form-control pwstrength"
-                                                    data-indicator="pwindicator"
-                                                    name="password"
-                                                />
-                                                <div id="pwindicator" className="pwindicator">
-                                                    <div className="bar" />
-                                                    <div className="label" />
+                                                <div className="float-right">
+                                                    <a href="auth-forgot-password.html" className="text-small">
+                                                        Forgot Password?
+                                                    </a>
                                                 </div>
                                             </div>
-                                            <div className="form-group col-6">
-                                                <label htmlFor="password2" className="d-block">
-                                                    Password Confirmation
-                                                </label>
-                                                <input
-                                                    id="password2"
-                                                    type="password"
-                                                    className="form-control"
-                                                    name="password-confirm"
-                                                />
-                                            </div>
-                                        </div>
-                                        <div className="form-divider">Your Home</div>
-                                        <div className="row">
-                                            <div className="form-group col-6">
-                                                <label>Country</label>
-                                                <select className="form-control selectric">
-                                                    <option>Indonesia</option>
-                                                    <option>Palestine</option>
-                                                    <option>Syria</option>
-                                                    <option>Malaysia</option>
-                                                    <option>Thailand</option>
-                                                </select>
-                                            </div>
-                                            <div className="form-group col-6">
-                                                <label>Province</label>
-                                                <select className="form-control selectric">
-                                                    <option>West Java</option>
-                                                    <option>East Java</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div className="row">
-                                            <div className="form-group col-6">
-                                                <label>City</label>
-                                                <input type="text" className="form-control" />
-                                            </div>
-                                            <div className="form-group col-6">
-                                                <label>Postal Code</label>
-                                                <input type="text" className="form-control" />
+                                            <input
+                                                id="password"
+                                                type="password"
+                                                className="form-control"
+                                                name="password"
+                                                tabIndex={2}
+                                                required=""
+                                                value={password}
+                                                onChange={(e) => { setPassword(e.target.value) }}
+                                            />
+                                            <div className="invalid-feedback">
+                                                please fill in your password
                                             </div>
                                         </div>
                                         <div className="form-group">
                                             <div className="custom-control custom-checkbox">
                                                 <input
                                                     type="checkbox"
-                                                    name="agree"
+                                                    name="remember"
                                                     className="custom-control-input"
-                                                    id="agree"
+                                                    tabIndex={3}
+                                                    id="remember-me"
                                                 />
-                                                <label className="custom-control-label" htmlFor="agree">
-                                                    I agree with the terms and conditions
+                                                <label className="custom-control-label" htmlFor="remember-me">
+                                                    Remember Me
                                                 </label>
                                             </div>
                                         </div>
@@ -131,12 +115,19 @@ export default function SignUp() {
                                             <button
                                                 type="submit"
                                                 className="btn btn-primary btn-lg btn-block"
+                                                tabIndex={4}
                                             >
-                                                Register
+                                                SignUp
                                             </button>
                                         </div>
                                     </form>
+                                    <div className="text-center mt-4 mb-3">
+                                        <div className="text-job text-muted"><Link to='/login'>Login</Link></div>
+                                    </div>
                                 </div>
+                            </div>
+                            <div className="mt-5 text-muted text-center">
+                                Don't have an account? <a href="auth-register.html">Create One</a>
                             </div>
                             <div className="simple-footer">Copyright © Stisla 2018</div>
                         </div>

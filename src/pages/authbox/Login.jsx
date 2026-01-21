@@ -1,5 +1,40 @@
+import { useState } from "react";
+import { signInWithEmailAndPassword } from "firebase/auth";
+
+import { auth } from '../../firebase';
+import { Link, useNavigate } from "react-router-dom";
+
 
 export default function Login() {
+
+    const [email, setEmail] = useState();
+    const [password, setPassword] = useState();
+
+
+    const nav = useNavigate();
+
+
+    const handleSubmit = async (e) => {
+
+        e.preventDefault();
+
+        try {
+
+            const res = await signInWithEmailAndPassword(
+                auth,
+                email,
+                password
+            );
+
+            console.log(res);
+
+            nav('/');
+
+        } catch (error) {
+            console.error(error);
+        }
+
+    }
 
     return (
 
@@ -24,10 +59,8 @@ export default function Login() {
                                 </div>
                                 <div className="card-body">
                                     <form
-                                        method="POST"
-                                        action="#"
+                                        onSubmit={(e) => { handleSubmit(e) }}
                                         className="needs-validation"
-                                        noValidate=""
                                     >
                                         <div className="form-group">
                                             <label htmlFor="email">Email</label>
@@ -39,6 +72,8 @@ export default function Login() {
                                                 tabIndex={1}
                                                 required=""
                                                 autofocus=""
+                                                value={email}
+                                                onChange={(e) => { setEmail(e.target.value) }}
                                             />
                                             <div className="invalid-feedback">
                                                 Please fill in your email
@@ -62,6 +97,8 @@ export default function Login() {
                                                 name="password"
                                                 tabIndex={2}
                                                 required=""
+                                                value={password}
+                                                onChange={(e) => { setPassword(e.target.value) }}
                                             />
                                             <div className="invalid-feedback">
                                                 please fill in your password
@@ -92,20 +129,8 @@ export default function Login() {
                                         </div>
                                     </form>
                                     <div className="text-center mt-4 mb-3">
-                                        <div className="text-job text-muted">Login With Social</div>
-                                    </div>
-                                    <div className="row sm-gutters">
-                                        <div className="col-6">
-                                            <a className="btn btn-block btn-social btn-facebook">
-                                                <span className="fab fa-facebook" /> Facebook
-                                            </a>
-                                        </div>
-                                        <div className="col-6">
-                                            <a className="btn btn-block btn-social btn-twitter">
-                                                <span className="fab fa-twitter" /> Twitter
-                                            </a>
-                                        </div>
-                                    </div>
+                                        <div className="text-job text-muted"><Link to='/sign-up'>Sign-Up</Link></div>
+                                    </div>                                    
                                 </div>
                             </div>
                             <div className="mt-5 text-muted text-center">

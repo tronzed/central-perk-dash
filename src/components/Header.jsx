@@ -1,4 +1,27 @@
+import { onAuthStateChanged, signOut } from "firebase/auth";
+import { auth } from '../firebase';
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+
 export default function Header() {
+
+    const nav = useNavigate();
+
+    const logOut = async () => {
+        try {
+            await signOut(auth);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    useEffect(() => {
+        onAuthStateChanged(auth, (user) => {
+            if (!user) {
+                nav('/login');
+            }
+        })
+    })
 
     return (
 
@@ -314,9 +337,9 @@ export default function Header() {
                                 <i className="fas fa-cog" /> Settings
                             </a>
                             <div className="dropdown-divider" />
-                            <a href="#" className="dropdown-item has-icon text-danger">
+                            <button onClick={logOut} className="dropdown-item has-icon text-danger">
                                 <i className="fas fa-sign-out-alt" /> Logout
-                            </a>
+                            </button>
                         </div>
                     </li>
                 </ul>

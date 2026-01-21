@@ -1,0 +1,68 @@
+[
+  {
+    "orderId": "ORD_1705849221",
+    "user": {
+      "uid": "xK92hHd83jsjKks92L",
+      "name": "Rahul Sharma",
+      "phone": "+91-9876543210"
+    },
+    "restaurant": {
+      "restaurantId": "rest_102",
+      "name": "Green Leaf Cafe"
+    },
+    "items": [
+      {
+        "itemId": "pizza_01",
+        "name": "Margherita Pizza",
+        "price": 249,
+        "quantity": 2,
+        "totalPrice": 498
+      }
+    ],
+    "pricing": {
+      "itemTotal": 498,
+      "tax": 25,
+      "deliveryFee": 40,
+      "grandTotal": 563
+    },
+    "orderStatus": "delivered",
+    "createdAt": "2026-01-21T18:30:00Z"
+  },
+
+  {
+    "orderId": "ORD_1705851105",
+    "user": {
+      "uid": "xK92hHd83jsjKks92L",
+      "name": "Rahul Sharma",
+      "phone": "+91-9876543210"
+    },
+    "restaurant": {
+      "restaurantId": "rest_108",
+      "name": "Veg Delight"
+    },
+    "items": [
+      {
+        "itemId": "burger_02",
+        "name": "Veg Burger",
+        "price": 149,
+        "quantity": 1,
+        "totalPrice": 149
+      },
+      {
+        "itemId": "fries_01",
+        "name": "French Fries",
+        "price": 99,
+        "quantity": 1,
+        "totalPrice": 99
+      }
+    ],
+    "pricing": {
+      "itemTotal": 248,
+      "tax": 12,
+      "deliveryFee": 30,
+      "grandTotal": 290
+    },
+    "orderStatus": "pending",
+    "createdAt": "2026-01-22T12:10:00Z"
+  }
+]
