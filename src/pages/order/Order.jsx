@@ -57,7 +57,7 @@ export default function Order() {
                                                     <>
                                                         <tr>
                                                             <td>{value?.orderId || 'N/A'}</td>
-                                                            <td>John Doe</td>
+                                                            <td>{value?.userName || 'N/A'}</td>
 
                                                             <td> {
 
