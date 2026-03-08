@@ -261,3 +261,29 @@ export const addSingleOrderStatus = async (val) => {
     }
 
 }
+
+
+// get feedback start
+
+export const getFeedback = async () => {
+
+    try {
+
+        const res = await fetch(`${firebaseURL}/feedback.json`);
+
+        if (!res.ok) {
+            throw new Error('not able to get feedback');
+        }
+
+        const data = await res.json();
+
+        return data;
+
+    } catch (error) {
+        console.log(error);
+        return [];
+    }
+
+}
+
+// get feedback end

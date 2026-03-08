@@ -1,7 +1,23 @@
-import { Link } from "react-router-dom";
+import { useEffect } from "react";
 import SectionHeader from "../../components/SectionHeader";
 
+import { getFeedback } from '../../utils/functions';
+
 export default function CustomersFeedback() {
+
+
+
+    useEffect(() => {
+
+        (async () => {
+
+            const data = await getFeedback();
+
+            console.log(data, '---ddd---');
+
+        })();
+
+    }, [])
 
     return (
 
