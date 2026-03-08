@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import SectionHeader from "../../components/SectionHeader";
 
 import { getFeedback } from '../../utils/functions';
@@ -6,22 +6,26 @@ import { getFeedback } from '../../utils/functions';
 export default function CustomersFeedback() {
 
 
+    const [feedbackBox, setFeedbackBox] = useState();
+
+    const getData = async () => {
+        const data = await getFeedback();
+        setFeedbackBox(data);
+        // console.log(data, '---ddd---');
+    }
+
 
     useEffect(() => {
 
-        (async () => {
-
-            const data = await getFeedback();
-
-            console.log(data, '---ddd---');
-
-        })();
+        getData();
 
     }, [])
 
     return (
 
         <>
+
+            {console.log(feedbackBox, '-------data-----ddd')}
 
             {/* Main Content */}
             <div className="main-content">
@@ -49,6 +53,37 @@ export default function CustomersFeedback() {
                                                 <th>Status</th>
                                                 <th>Actions</th>
                                             </tr>
+
+
+                                            {
+
+                                                feedbackBox?.map((val, key) => (
+                                                    <>
+                                                        <tr>
+                                                            <td>#FB2001</td>
+                                                            <td>Rahul Sharma</td>
+                                                            <td>{val?.orderData?.orderId}</td>
+                                                            <td>{val?.star} ⭐</td>
+                                                            <td>{val?.review}</td>
+                                                            <td>22 Dec 2025</td>
+                                                            <td><span class="badge badge-success">Published</span></td>
+                                                            <td>
+                                                                <div className="table_action_box">
+                                                                    <a href="#" className="btn btn-outline-danger">
+                                                                        Delete
+                                                                    </a>
+                                                                    <a href="#" className="btn btn-outline-secondary">
+                                                                        View
+                                                                    </a>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                    </>
+                                                ))
+
+                                            }
+
+
                                             <tr>
                                                 <td>#FB2001</td>
                                                 <td>Rahul Sharma</td>
@@ -69,65 +104,6 @@ export default function CustomersFeedback() {
                                                 </td>
                                             </tr>
 
-                                            <tr>
-                                                <td>#FB2002</td>
-                                                <td>Ananya Verma</td>
-                                                <td>#ORD1026</td>
-                                                <td>4 ⭐</td>
-                                                <td>Great taste, but packaging could be better.</td>
-                                                <td>22 Dec 2025</td>
-                                                <td><span class="badge badge-success">Published</span></td>
-                                                <td>
-                                                    <div className="table_action_box">
-                                                        <a href="#" className="btn btn-outline-danger">
-                                                            Delete
-                                                        </a>
-                                                        <a href="#" className="btn btn-outline-secondary">
-                                                            View
-                                                        </a>
-                                                    </div>
-                                                </td>
-                                            </tr>
-
-                                            <tr>
-                                                <td>#FB2003</td>
-                                                <td>Amit Patel</td>
-                                                <td>#ORD1027</td>
-                                                <td>2 ⭐</td>
-                                                <td>Delivery was delayed and food was cold.</td>
-                                                <td>23 Dec 2025</td>
-                                                <td><span class="badge badge-warning">Pending</span></td>
-                                                <td>
-                                                    <div className="table_action_box">
-                                                        <a href="#" className="btn btn-outline-danger">
-                                                            Delete
-                                                        </a>
-                                                        <a href="#" className="btn btn-outline-secondary">
-                                                            View
-                                                        </a>
-                                                    </div>
-                                                </td>
-                                            </tr>
-
-                                            <tr>
-                                                <td>#FB2004</td>
-                                                <td>Neha Singh</td>
-                                                <td>#ORD1028</td>
-                                                <td>3 ⭐</td>
-                                                <td>Average experience, portion size was small.</td>
-                                                <td>23 Dec 2025</td>
-                                                <td><span class="badge badge-secondary">Hidden</span></td>
-                                                <td>
-                                                    <div className="table_action_box">
-                                                        <a href="#" className="btn btn-outline-danger">
-                                                            Delete
-                                                        </a>
-                                                        <a href="#" className="btn btn-outline-secondary">
-                                                            View
-                                                        </a>
-                                                    </div>
-                                                </td>
-                                            </tr>
 
                                         </tbody>
                                     </table>

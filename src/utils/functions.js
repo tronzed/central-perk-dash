@@ -277,7 +277,9 @@ export const getFeedback = async () => {
 
         const data = await res.json();
 
-        return data;
+        const data2 = Object.values(data);
+
+        return data2;
 
     } catch (error) {
         console.log(error);
