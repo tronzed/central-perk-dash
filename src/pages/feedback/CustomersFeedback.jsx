@@ -50,7 +50,6 @@ export default function CustomersFeedback() {
                                                 <th>Rating</th>
                                                 <th>Feedback</th>
                                                 <th>Date</th>
-                                                <th>Status</th>
                                                 <th>Actions</th>
                                             </tr>
 
@@ -60,14 +59,13 @@ export default function CustomersFeedback() {
                                                 feedbackBox?.map((val, key) => (
                                                     <>
                                                         <tr>
-                                                            <td>#FB2001</td>
-                                                            <td>Rahul Sharma</td>
-                                                            <td>{val?.orderData?.orderId}</td>
-                                                            <td>{val?.star} ⭐</td>
-                                                            <td>{val?.review}</td>
-                                                            <td>22 Dec 2025</td>
-                                                            <td><span class="badge badge-success">Published</span></td>
-                                                            <td>
+                                                            <td>{val?.feedbackId || 'N/A'}</td>
+                                                            <td>{val?.orderData?.userName || 'N/A'}</td>
+                                                            <td>{val?.orderData?.orderId || 'N/A'}</td>
+                                                            <td>{val?.star || 'N/A'} ⭐</td>
+                                                            <td>{val?.review || 'N/A'}</td>
+                                                            <td>{val?.date || 'N/A'}</td>
+                                                            <td style={{width: "200px"}}>
                                                                 <div className="table_action_box">
                                                                     <a href="#" className="btn btn-outline-danger">
                                                                         Delete
@@ -83,26 +81,6 @@ export default function CustomersFeedback() {
 
                                             }
 
-
-                                            <tr>
-                                                <td>#FB2001</td>
-                                                <td>Rahul Sharma</td>
-                                                <td>#ORD1025</td>
-                                                <td>5 ⭐</td>
-                                                <td>Food was delicious and delivered on time.</td>
-                                                <td>22 Dec 2025</td>
-                                                <td><span class="badge badge-success">Published</span></td>
-                                                <td>
-                                                    <div className="table_action_box">
-                                                        <a href="#" className="btn btn-outline-danger">
-                                                            Delete
-                                                        </a>
-                                                        <a href="#" className="btn btn-outline-secondary">
-                                                            View
-                                                        </a>
-                                                    </div>
-                                                </td>
-                                            </tr>
 
 
                                         </tbody>
