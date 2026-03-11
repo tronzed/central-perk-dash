@@ -210,6 +210,8 @@ export const getOrder = async () => {
             ...value
         }))
 
+        console.log(data2,'===as=das=d');
+
         return data2;
 
     } catch (error) {
