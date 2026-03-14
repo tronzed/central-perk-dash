@@ -53,48 +53,50 @@ export default function Order() {
                                             </tr>
 
                                             {
-                                                data?.map((value, key) => (
-                                                    <>
-                                                        <tr>
-                                                            <td>{value?.orderId || 'N/A'}</td>
-                                                            <td>{value?.userName || 'N/A'}</td>
+                                                data?.map((value, key) => {
 
-                                                            <td> {
+                                                    const data2 = Object.values(value);
 
-                                                                value?.cartData?.map((value, key) => (
-                                                                    <>
-                                                                        {value?.name + ', ' || "N/A"}
-                                                                    </>
-                                                                ))
+                                                    const data3 = [];
 
-                                                            } </td>
+                                                    for (const item of data2) {
 
-                                                            <td>${value?.total || "N/A"}</td>
-                                                            <td>{value?.orderType || "N/A"}</td>
-                                                            <td>
-                                                                {
-                                                                    value?.status == "confirmed" ? (
-                                                                        <span className="badge badge-success">Confirmed</span>
-                                                                    ) : value?.status == "cancelled" ? (
-                                                                        <span className="badge badge-danger">Cancelled</span>
-                                                                    ) : value?.status == "complete" ? (
-                                                                        <span className="badge badge-primary">Complete</span>
-                                                                    ) : (
-                                                                        <span className="badge badge-warning">Pending</span>
-                                                                    )
-                                                                }
-                                                            </td>
-                                                            <td>{value?.date || "N/A"}, {value?.time || "N/A"}</td>
-                                                            <td>
-                                                                <div className="table_action_box">
-                                                                    <Link to={'/view-order/' + value?.id} className="btn btn-outline-secondary">
-                                                                        View
-                                                                    </Link>
-                                                                </div>
-                                                            </td>
-                                                        </tr>
-                                                    </>
-                                                ))
+                                                        const [key, val] = Object.entries(item)[0];
+
+                                                        console.log(key,'keykeykeykeykeykey');
+
+                                                        data3.push({
+                                                            id: key,
+                                                            ...val
+                                                        })
+
+
+                                                        // console.log(item, '===000');
+
+                                                    }
+
+                                                    console.log(data3, '===ddd');
+
+                                                    return (
+
+                                                        data3?.map((value2, key) => (
+                                                            <>
+                                                                <tr>
+                                                                    <td>{value2.orderId}</td>
+                                                                    <td>{value2.userName}</td>
+                                                                    <td>{value2.orderId}</td>
+                                                                    <td>{value2.total}</td>
+                                                                    <td>{value2.orderType}</td>
+                                                                    <td>{value2.orderId}</td>
+                                                                    <td>{value2.orderId}</td>
+                                                                    <td>{value2.orderId}</td>
+                                                                </tr>
+                                                            </>
+                                                        ))
+
+                                                    );
+
+                                                })
 
                                             }
 

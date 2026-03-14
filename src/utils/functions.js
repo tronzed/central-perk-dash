@@ -205,10 +205,12 @@ export const getOrder = async () => {
 
         const data = await res.json();
 
-        const data2 = Object.entries(data).map(([key, value]) => ({
-            id: key,
-            ...value
-        }))
+        // const data2 = Object.entries(data).map(([key, value]) => ({
+        //     id: key,
+        //     ...value
+        // }))
+
+        const data2 = Object.values(data);
 
         console.log(data2,'===as=das=d');
 
