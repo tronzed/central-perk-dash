@@ -205,14 +205,7 @@ export const getOrder = async () => {
 
         const data = await res.json();
 
-        // const data2 = Object.entries(data).map(([key, value]) => ({
-        //     id: key,
-        //     ...value
-        // }))
-
         const data2 = Object.values(data);
-
-        console.log(data2,'===as=das=d');
 
         return data2;
 
@@ -247,7 +240,7 @@ export const addSingleOrderStatus = async (val) => {
 
     try {
 
-        const res = await fetch(firebaseURL + 'order/' + val?.idBox + '.json', {
+        const res = await fetch(firebaseURL + 'order/' + val?.userId + "/" + val?.orderId + "/" + val?.idBox + '.json', {
             method: 'PATCH',
             headers: { 'Content-type': 'application/json' },
             body: JSON.stringify({ status: val?.status })

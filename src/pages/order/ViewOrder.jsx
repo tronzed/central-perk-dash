@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import SectionHeader from "../../components/SectionHeader";
-import { useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import Loader from "../../components/Loader";
 
 import { getSingleOrder, addSingleOrderStatus } from '../../utils/functions'
@@ -14,14 +14,19 @@ export default function ViewOrder() {
 
     const [showLoader, setShowLoader] = useState(true);
 
+    const loc = useLocation();
+
     const getData = async () => {
-        const data = await getSingleOrder(id);
+
+        const url = loc.state.userId + '/' + loc.state.orderId + '/' + id;
+
+        const data = await getSingleOrder(url);
         setUserData(data);
         setShowLoader(false);
     }
 
     const setStatus = async (val) => {
-        await addSingleOrderStatus({ idBox: id, status: val });
+        await addSingleOrderStatus({ idBox: id, status: val, userId: loc.state.userId, orderId: loc.state.orderId });
         getData();
         setShowLoader(true);
     }

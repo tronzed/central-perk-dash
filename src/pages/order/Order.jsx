@@ -63,15 +63,10 @@ export default function Order() {
 
                                                         const [key, val] = Object.entries(item)[0];
 
-                                                        console.log(key,'keykeykeykeykeykey');
-
                                                         data3.push({
                                                             id: key,
                                                             ...val
                                                         })
-
-
-                                                        // console.log(item, '===000');
 
                                                     }
 
@@ -82,14 +77,41 @@ export default function Order() {
                                                         data3?.map((value2, key) => (
                                                             <>
                                                                 <tr>
-                                                                    <td>{value2.orderId}</td>
-                                                                    <td>{value2.userName}</td>
-                                                                    <td>{value2.orderId}</td>
-                                                                    <td>{value2.total}</td>
-                                                                    <td>{value2.orderType}</td>
-                                                                    <td>{value2.orderId}</td>
-                                                                    <td>{value2.orderId}</td>
-                                                                    <td>{value2.orderId}</td>
+                                                                    <td>{value2.orderId || 'N/A'}</td>
+                                                                    <td>{value2.userName || 'N/A'}</td>
+                                                                    <td>{
+
+                                                                        value2.cartData.map((value, key) => {
+                                                                            return (
+                                                                                <>
+                                                                                    <span>{value?.name}</span>
+                                                                                    <span>x</span>
+                                                                                </>
+                                                                            );
+                                                                        })
+
+                                                                    }</td>
+                                                                    <td>{'$' + value2.total || 'N/A'}</td>
+                                                                    <td>{value2.orderType || 'N/A'}</td>
+                                                                    <td> {
+                                                                        value2?.status == "confirmed" ? (
+                                                                            <span className="badge badge-success">Confirmed</span>
+                                                                        ) : value2?.status == "cancelled" ? (
+                                                                            <span className="badge badge-danger">Cancelled</span>
+                                                                        ) : value2?.status == "complete" ? (
+                                                                            <span className="badge badge-primary">Complete</span>
+                                                                        ) : (
+                                                                            <span className="badge badge-warning">Pending</span>
+                                                                        )
+                                                                    } </td>
+                                                                    <td>{value2.date || 'N/A'}</td>
+                                                                    <td>
+                                                                        <div className="table_action_box">
+                                                                            <Link to={'/view-order/' + value2?.id} state={{ userId: value2.userId, orderId: value2.orderId }} className="btn btn-outline-secondary">
+                                                                                View
+                                                                            </Link>
+                                                                        </div>
+                                                                    </td>
                                                                 </tr>
                                                             </>
                                                         ))
