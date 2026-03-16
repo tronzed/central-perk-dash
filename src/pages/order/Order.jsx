@@ -70,8 +70,6 @@ export default function Order() {
 
                                                     }
 
-                                                    console.log(data3, '===ddd');
-
                                                     return (
 
                                                         data3?.map((value2, key) => (
@@ -144,7 +142,7 @@ export default function Order() {
                                                 <td>Cheese Burger ×1, Fries ×1</td>
                                                 <td>349</td>
                                                 <td>Delivery</td>
-                                                <td><span class="badge badge-warning">Preparing</span></td>
+                                                <td><span className="badge badge-warning">Preparing</span></td>
                                                 <td>22 Dec 2025, 7:45 PM</td>
                                                 <td>
                                                     <div className="table_action_box">

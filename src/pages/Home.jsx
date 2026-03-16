@@ -1,10 +1,51 @@
+import { useEffect, useState } from "react";
 import SectionHeader from "../components/SectionHeader";
 
+import { getOrder } from '../utils/functions'
+
 export default function Home() {
+
+
+    const [orderData, setOrderData] = useState();
+    const [orderTotal, setOrderTotal] = useState();
+
+    const [orderPending, setOrderPending] = useState();
+    const [orderConfirmed, setOrderConfirmed] = useState();
+    const [orderCompleted, setOrderCompleted] = useState();
+    const [orderCancel, setOrderCancel] = useState();
+
+
+    const getOrderData = async () => {
+
+        const data = await getOrder();
+
+        const result = data.flatMap(obj =>
+            Object.values(obj)
+        ).flatMap(obj =>
+            Object.values(obj)
+        );;
+
+        setOrderTotal(result.length);
+
+        setOrderConfirmed(result.filter(item => item.status === "confirmed").length)
+        setOrderCompleted(result.filter(item => item.status === "complete").length)
+        setOrderCancel(result.filter(item => item.status === "cancelled").length)
+        setOrderPending(result.filter(item => item.status === undefined).length)
+
+        setOrderData(result);
+
+    }
+
+    useEffect(() => {
+        getOrderData();
+    }, [])
 
     return (
 
         <>
+
+            {console.log(orderData, '-----orderData-----')}
+            {console.log(orderData, '-----orderTotal-----')}
 
             <div className="main-content" style={{ minHeight: 850 }}>
                 <section className="section">
@@ -90,15 +131,19 @@ export default function Home() {
                                     </div>
                                     <div className="card-stats-items">
                                         <div className="card-stats-item">
-                                            <div className="card-stats-item-count">24</div>
+                                            <div className="card-stats-item-count">{orderPending || "0"}</div>
                                             <div className="card-stats-item-label">Pending</div>
                                         </div>
                                         <div className="card-stats-item">
-                                            <div className="card-stats-item-count">12</div>
-                                            <div className="card-stats-item-label">Shipping</div>
+                                            <div className="card-stats-item-count">{orderCancel || '0'}</div>
+                                            <div className="card-stats-item-label">Canceled</div>
                                         </div>
                                         <div className="card-stats-item">
-                                            <div className="card-stats-item-count">23</div>
+                                            <div className="card-stats-item-count">{orderConfirmed || '0'}</div>
+                                            <div className="card-stats-item-label">Confirmed</div>
+                                        </div>
+                                        <div className="card-stats-item">
+                                            <div className="card-stats-item-count">{orderCompleted || "0"}</div>
                                             <div className="card-stats-item-label">Completed</div>
                                         </div>
                                     </div>
@@ -110,7 +155,7 @@ export default function Home() {
                                     <div className="card-header">
                                         <h4>Total Orders</h4>
                                     </div>
-                                    <div className="card-body">59</div>
+                                    <div className="card-body">{orderTotal}</div>
                                 </div>
                             </div>
                         </div>
@@ -279,7 +324,7 @@ export default function Home() {
                             </div>
                         </div>
                     </div>
-                    
+
                     <div className="row hide_me">
                         <div className="col-md-6">
                             <div className="card">
@@ -713,7 +758,7 @@ export default function Home() {
                         <div className="col-md-8">
                             <div className="card">
                                 <div className="card-header">
-                                    <h4>Invoices</h4>
+                                    <h4>Order</h4>
                                     <div className="card-header-action">
                                         <a href="#" className="btn btn-danger">
                                             View More <i className="fas fa-chevron-right" />
