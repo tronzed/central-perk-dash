@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import SectionHeader from "../components/SectionHeader";
 
-import { getOrder } from '../utils/functions'
+import { getOrder, getMenu, getFeedback } from '../utils/functions'
+import { Link } from "react-router-dom";
 
 export default function Home() {
 
@@ -9,15 +10,25 @@ export default function Home() {
     const [orderData, setOrderData] = useState();
     const [orderTotal, setOrderTotal] = useState();
 
+    const [feedbackData, setFeedbackData] = useState();
+    const [feedbackTotal, setFeedbackTotal] = useState();
+
     const [orderPending, setOrderPending] = useState();
     const [orderConfirmed, setOrderConfirmed] = useState();
     const [orderCompleted, setOrderCompleted] = useState();
     const [orderCancel, setOrderCancel] = useState();
 
+    const [balance, setBalance] = useState();
 
-    const getOrderData = async () => {
+    const [menuCount, setMenuCount] = useState();
+
+    const getData = async () => {
 
         const data = await getOrder();
+
+        const menuData = await getMenu();
+
+        const feedbackData = await getFeedback();
 
         const result = data.flatMap(obj =>
             Object.values(obj)
@@ -27,17 +38,24 @@ export default function Home() {
 
         setOrderTotal(result.length);
 
-        setOrderConfirmed(result.filter(item => item.status === "confirmed").length)
-        setOrderCompleted(result.filter(item => item.status === "complete").length)
-        setOrderCancel(result.filter(item => item.status === "cancelled").length)
-        setOrderPending(result.filter(item => item.status === undefined).length)
+        setOrderConfirmed(result.filter(item => item.status === "confirmed").length);
+        setOrderCompleted(result.filter(item => item.status === "complete").length);
+        setOrderCancel(result.filter(item => item.status === "cancelled").length);
+        setOrderPending(result.filter(item => item.status === undefined).length);
+
+        setBalance(result.map(item => item.total).reduce((a, b) => a + b, 0));
+        setMenuCount(menuData.length);
+
+        setFeedbackTotal(feedbackData.length);
 
         setOrderData(result);
+
+        setFeedbackData(feedbackData);
 
     }
 
     useEffect(() => {
-        getOrderData();
+        getData();
     }, [])
 
     return (
@@ -45,7 +63,7 @@ export default function Home() {
         <>
 
             {console.log(orderData, '-----orderData-----')}
-            {console.log(orderData, '-----orderTotal-----')}
+
 
             <div className="main-content" style={{ minHeight: 850 }}>
                 <section className="section">
@@ -237,7 +255,7 @@ export default function Home() {
                                     <div className="card-header">
                                         <h4>Balance</h4>
                                     </div>
-                                    <div className="card-body">$187,13</div>
+                                    <div className="card-body">{'$' + balance || 'N/A'} </div>
                                 </div>
                             </div>
                         </div>
@@ -317,9 +335,9 @@ export default function Home() {
                                 </div>
                                 <div className="card-wrap">
                                     <div className="card-header">
-                                        <h4>Revenue</h4>
+                                        <h4>Menu Items</h4>
                                     </div>
-                                    <div className="card-body">4,732</div>
+                                    <div className="card-body">{menuCount || 'N/A'}</div>
                                 </div>
                             </div>
                         </div>
@@ -760,9 +778,9 @@ export default function Home() {
                                 <div className="card-header">
                                     <h4>Order</h4>
                                     <div className="card-header-action">
-                                        <a href="#" className="btn btn-danger">
+                                        <Link to="/order" className="btn btn-danger">
                                             View More <i className="fas fa-chevron-right" />
-                                        </a>
+                                        </Link>
                                     </div>
                                 </div>
                                 <div className="card-body p-0">
@@ -770,87 +788,47 @@ export default function Home() {
                                         <table className="table table-striped">
                                             <tbody>
                                                 <tr>
-                                                    <th>Invoice ID</th>
+                                                    <th>Order ID</th>
                                                     <th>Customer</th>
                                                     <th>Status</th>
                                                     <th>Due Date</th>
-                                                    <th>Action</th>
+                                                    {/* <th>Action</th> */}
                                                 </tr>
-                                                <tr>
-                                                    <td>
-                                                        <a href="#">INV-87239</a>
-                                                    </td>
-                                                    <td className="font-weight-600">Kusnadi</td>
-                                                    <td>
-                                                        <div className="badge badge-warning">Unpaid</div>
-                                                    </td>
-                                                    <td>July 19, 2018</td>
-                                                    <td>
-                                                        <a href="#" className="btn btn-primary">
-                                                            Detail
-                                                        </a>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <a href="#">INV-48574</a>
-                                                    </td>
-                                                    <td className="font-weight-600">Hasan Basri</td>
-                                                    <td>
-                                                        <div className="badge badge-success">Paid</div>
-                                                    </td>
-                                                    <td>July 21, 2018</td>
-                                                    <td>
-                                                        <a href="#" className="btn btn-primary">
-                                                            Detail
-                                                        </a>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <a href="#">INV-76824</a>
-                                                    </td>
-                                                    <td className="font-weight-600">Muhamad Nuruzzaki</td>
-                                                    <td>
-                                                        <div className="badge badge-warning">Unpaid</div>
-                                                    </td>
-                                                    <td>July 22, 2018</td>
-                                                    <td>
-                                                        <a href="#" className="btn btn-primary">
-                                                            Detail
-                                                        </a>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <a href="#">INV-84990</a>
-                                                    </td>
-                                                    <td className="font-weight-600">Agung Ardiansyah</td>
-                                                    <td>
-                                                        <div className="badge badge-warning">Unpaid</div>
-                                                    </td>
-                                                    <td>July 22, 2018</td>
-                                                    <td>
-                                                        <a href="#" className="btn btn-primary">
-                                                            Detail
-                                                        </a>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <a href="#">INV-87320</a>
-                                                    </td>
-                                                    <td className="font-weight-600">Ardian Rahardiansyah</td>
-                                                    <td>
-                                                        <div className="badge badge-success">Paid</div>
-                                                    </td>
-                                                    <td>July 28, 2018</td>
-                                                    <td>
-                                                        <a href="#" className="btn btn-primary">
-                                                            Detail
-                                                        </a>
-                                                    </td>
-                                                </tr>
+
+
+                                                {
+
+                                                    orderData?.slice(0, 5)?.map((value, key) => (
+                                                        <>
+                                                            <tr className="ticket-item">
+                                                                <td>{value?.orderId || 'N/A'}</td>
+                                                                <td>{value?.userName || 'N/A'}</td>
+
+                                                                <td> {
+                                                                    value?.status == "confirmed" ? (
+                                                                        <span className="badge badge-success">Confirmed</span>
+                                                                    ) : value?.status == "cancelled" ? (
+                                                                        <span className="badge badge-danger">Cancelled</span>
+                                                                    ) : value?.status == "complete" ? (
+                                                                        <span className="badge badge-primary">Complete</span>
+                                                                    ) : (
+                                                                        <span className="badge badge-warning">Pending</span>
+                                                                    )
+                                                                } </td>
+
+
+                                                                <td>{value?.date || 'N/A'}</td>
+                                                                {/* <td>
+                                                                    <Link to={'/view-order/' + value?.id} state={{ userId: value.userId, orderId: value.orderId }} className="btn btn-outline-secondary">
+                                                                        View
+                                                                    </Link>
+                                                                </td> */}
+                                                            </tr>
+                                                        </>
+                                                    ))
+
+                                                }
+
                                             </tbody>
                                         </table>
                                     </div>
@@ -863,47 +841,41 @@ export default function Home() {
                                     <div className="card-icon">
                                         <i className="far fa-question-circle" />
                                     </div>
-                                    <h4>14</h4>
+                                    <h4>{feedbackTotal || 'N/A'}</h4>
                                     <div className="card-description">Customer Feedbacks</div>
                                 </div>
                                 <div className="card-body p-0">
                                     <div className="tickets-list">
-                                        <a href="#" className="ticket-item">
-                                            <div className="ticket-title">
-                                                <h4>Food was delicious and delivered on time.</h4>
-                                            </div>
-                                            <div className="ticket-info">
-                                                <div>Laila Tazkiah</div>
-                                                <div className="bullet" />
-                                                <div className="text-primary">1 min ago</div>
-                                            </div>
-                                        </a>
-                                        <a href="#" className="ticket-item">
-                                            <div className="ticket-title">
-                                                <h4>Great taste, but packaging could be better.</h4>
-                                            </div>
-                                            <div className="ticket-info">
-                                                <div>Rizal Fakhri</div>
-                                                <div className="bullet" />
-                                                <div>2 hours ago</div>
-                                            </div>
-                                        </a>
-                                        <a href="#" className="ticket-item">
-                                            <div className="ticket-title">
-                                                <h4>Delivery was delayed and food was cold.</h4>
-                                            </div>
-                                            <div className="ticket-info">
-                                                <div>Syahdan Ubaidillah</div>
-                                                <div className="bullet" />
-                                                <div>6 hours ago</div>
-                                            </div>
-                                        </a>
-                                        <a
-                                            href="features-tickets.html"
+
+                                        {
+
+                                            feedbackData?.slice(0, 4)?.map((value, key) => (
+
+                                                <>
+
+                                                    <span className="ticket-item">
+                                                        <div className="ticket-title">
+                                                            <h4>{value.review}</h4>
+                                                        </div>
+                                                        <div className="ticket-info">
+                                                            {/* <div>Laila Tazkiah</div> */}
+                                                            {/* <div className="bullet" /> */}
+                                                            <div className="text-primary">{value.date}</div>
+                                                        </div>
+                                                    </span>
+
+                                                </>
+
+                                            ))
+
+                                        }
+
+                                        <Link
+                                            to="/customer-feedback"
                                             className="ticket-item ticket-more"
                                         >
                                             View All <i className="fas fa-chevron-right" />
-                                        </a>
+                                        </Link>
                                     </div>
                                 </div>
                             </div>
