@@ -30,11 +30,15 @@ export default function Home() {
 
         const feedbackData = await getFeedback();
 
+
         const result = data.flatMap(obj =>
             Object.values(obj)
         ).flatMap(obj =>
-            Object.values(obj)
-        );;
+            Object.entries(obj).map(([key, value]) => ({
+                id: key,
+                ...value
+            }))
+        );
 
         setOrderTotal(result.length);
 
@@ -47,9 +51,7 @@ export default function Home() {
         setMenuCount(menuData.length);
 
         setFeedbackTotal(feedbackData.length);
-
         setOrderData(result);
-
         setFeedbackData(feedbackData);
 
     }
@@ -792,7 +794,7 @@ export default function Home() {
                                                     <th>Customer</th>
                                                     <th>Status</th>
                                                     <th>Due Date</th>
-                                                    {/* <th>Action</th> */}
+                                                    <th>Action</th>
                                                 </tr>
 
 
@@ -818,11 +820,11 @@ export default function Home() {
 
 
                                                                 <td>{value?.date || 'N/A'}</td>
-                                                                {/* <td>
+                                                                <td>
                                                                     <Link to={'/view-order/' + value?.id} state={{ userId: value.userId, orderId: value.orderId }} className="btn btn-outline-secondary">
                                                                         View
                                                                     </Link>
-                                                                </td> */}
+                                                                </td>
                                                             </tr>
                                                         </>
                                                     ))
