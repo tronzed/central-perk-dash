@@ -16,6 +16,7 @@ export default function EditMenu() {
     const [img, setImg] = useState();
     const [imgUrlBox, setImgUrlBox] = useState();
     const [showLoader, setShowLoader] = useState(true);
+    const [feature, setFeature] = useState();
 
     const { id } = useParams();
 
@@ -49,7 +50,7 @@ export default function EditMenu() {
             }
 
 
-            const data = { id, name, type, desc, price, status, imgUrl };
+            const data = { id, name, type, desc, price, status, imgUrl, feature };
 
             await editMenu(data);
             toast.success('Item Edited');
@@ -76,6 +77,7 @@ export default function EditMenu() {
         setPrice(data.price);
         setStatus(data.status);
         setImgUrlBox(data.imgUrl);
+        setFeature(data.feature);
         setShowLoader(false);
     }
 
@@ -154,19 +156,36 @@ export default function EditMenu() {
                                     </div>
 
                                     <div className="form-group">
-                                        <div className="control-label">Status</div>
-                                        <label className="custom-switch mt-2">
-                                            <input
-                                                type="checkbox"
-                                                name="custom-switch-checkbox"
-                                                className="custom-switch-input"
-                                                checked={status} onChange={(e) => setStatus(e.target.checked)}
-                                            />
-                                            <span className="custom-switch-indicator" />
-                                            {/* <span className="custom-switch-description">
-                                            I agree with terms and conditions
-                                        </span> */}
-                                        </label>
+
+
+                                        <div className="form-row">
+                                            <div className="form-group col-md-6">
+                                                <div className="control-label">Status</div>
+                                                <label className="custom-switch mt-2">
+                                                    <input
+                                                        type="checkbox"
+                                                        name="custom-switch-checkbox"
+                                                        className="custom-switch-input"
+                                                        checked={status} onChange={(e) => setStatus(e.target.checked)}
+                                                    />
+                                                    <span className="custom-switch-indicator" />
+                                                </label>
+                                            </div>
+                                            <div className="form-group col-md-6">
+                                                <div className="control-label">Feature Item</div>
+                                                <label className="custom-switch mt-2">
+                                                    <input
+                                                        type="checkbox"
+                                                        name="custom-switch-checkbox"
+                                                        className="custom-switch-input"
+                                                        checked={feature} onChange={(e) => setFeature(e.target.checked)}
+                                                    />
+                                                    <span className="custom-switch-indicator" />
+                                                </label>
+                                            </div>
+                                        </div>
+
+
                                     </div>
 
                                 </div>

@@ -16,6 +16,7 @@ export default function AddMenu() {
     const [img, setImg] = useState();
     const [imgUrlBox, setImgUrlBox] = useState();
     const [showLoader, setShowLoader] = useState();
+    const [feature, setFeature] = useState();
 
 
     const nav = useNavigate();
@@ -50,7 +51,7 @@ export default function AddMenu() {
             }
 
 
-            const data = { name, type, desc, price, status, imgUrl };
+            const data = { name, type, desc, price, status, imgUrl, feature };
 
             await addMenu(data);
             toast.success('Great success!');
@@ -142,19 +143,35 @@ export default function AddMenu() {
                                     </div>
 
                                     <div className="form-group">
-                                        <div className="control-label">Status</div>
-                                        <label className="custom-switch mt-2">
-                                            <input
-                                                type="checkbox"
-                                                name="custom-switch-checkbox"
-                                                className="custom-switch-input"
-                                                value={status} onChange={(e) => setStatus(e.target.checked)}
-                                            />
-                                            <span className="custom-switch-indicator" />
-                                            {/* <span className="custom-switch-description">
-                                            I agree with terms and conditions
-                                        </span> */}
-                                        </label>
+
+                                        <div className="form-row">
+                                            <div className="form-group col-md-6">
+                                                <div className="control-label">Status</div>
+                                                <label className="custom-switch mt-2">
+                                                    <input
+                                                        type="checkbox"
+                                                        name="custom-switch-checkbox"
+                                                        className="custom-switch-input"
+                                                        value={status} onChange={(e) => setStatus(e.target.checked)}
+                                                    />
+                                                    <span className="custom-switch-indicator" />
+                                                </label>
+                                            </div>
+                                            <div className="form-group col-md-6">
+                                                <div className="control-label">Feature Item</div>
+                                                <label className="custom-switch mt-2">
+                                                    <input
+                                                        type="checkbox"
+                                                        name="custom-switch-checkbox"
+                                                        className="custom-switch-input"
+                                                        value={feature} onChange={(e) => setFeature(e.target.checked)}
+                                                    />
+                                                    <span className="custom-switch-indicator" />
+                                                </label>
+                                            </div>
+                                        </div>
+
+
                                     </div>
 
                                 </div>
