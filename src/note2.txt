@@ -42,11 +42,11 @@ x Customer Feedback listing
 ----- (Issues) -----
 
 
-- check img update issue in menu
+x check img update issue in menu
 
 x add user name in header
 
-- add diffrent icon in sidebar for menu
+x add diffrent icon in sidebar for menu
 
 x Feedback text limit in dashboard home 
 

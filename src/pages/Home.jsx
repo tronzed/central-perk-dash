@@ -3,6 +3,7 @@ import SectionHeader from "../components/SectionHeader";
 
 import { getOrder, getMenu, getFeedback } from '../utils/functions'
 import { Link } from "react-router-dom";
+import Loader from "../components/Loader";
 
 export default function Home() {
 
@@ -21,6 +22,8 @@ export default function Home() {
     const [balance, setBalance] = useState();
 
     const [menuCount, setMenuCount] = useState();
+
+    const [showLoader, setShowLoader] = useState(true);
 
     const getData = async () => {
 
@@ -54,6 +57,8 @@ export default function Home() {
         setOrderData(result);
         setFeedbackData(feedbackData);
 
+        setShowLoader(false);
+
     }
 
     useEffect(() => {
@@ -64,8 +69,7 @@ export default function Home() {
 
         <>
 
-            {console.log(orderData, '-----orderData-----')}
-
+            <Loader show={showLoader}/>
 
             <div className="main-content" style={{ minHeight: 850 }}>
                 <section className="section">
