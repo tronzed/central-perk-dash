@@ -21,22 +21,22 @@ export default function Sidebar() {
                         </li>
                         <li>
                             <NavLink className="nav-link" to="order">
-                                <i className="fas fa-pencil-ruler" /> <span>Order</span>
+                                <i className="fas fa-receipt" /> <span>Order</span>
                             </NavLink>
                         </li>
                         <li>
                             <NavLink className="nav-link" to="menu">
-                                <i className="fas fa-pencil-ruler" /> <span>Menu</span>
+                                <i className="fas fa-utensils" /> <span>Menu</span>
                             </NavLink>
                         </li>
                         <li>
                             <NavLink className="nav-link" to="customer-feedback">
-                                <i className="fas fa-pencil-ruler" /> <span>Customer Feedback</span>
+                                <i className="fas fa-comment-dots" /> <span>Customer Feedback</span>
                             </NavLink>
                         </li>
                         <li>
                             <NavLink className="nav-link" to="table-booking">
-                                <i className="fas fa-pencil-ruler" /> <span>Table Booking</span>
+                                <i className="fas fa-calendar-check" /> <span>Table Booking</span>
                             </NavLink>
                         </li>
                     </ul>

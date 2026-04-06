@@ -26,7 +26,7 @@ export default function EditMenu() {
 
         try {
 
-            let imgUrl = "";
+            let imgUrl = img;
 
             if (img != null) {
 
@@ -71,12 +71,12 @@ export default function EditMenu() {
 
         const data = await getEditMenu(id);
 
-        setName(data.name);
-        setType(data.type);
-        setDesc(data.desc);
-        setPrice(data.price);
-        setStatus(data.status);
-        setImgUrlBox(data.imgUrl);
+        setName(data?.name);
+        setType(data?.type);
+        setDesc(data?.desc);
+        setPrice(data?.price);
+        setStatus(data?.status);
+        setImgUrlBox(data?.imgUrl);
         setFeature(data.feature);
         setShowLoader(false);
     }

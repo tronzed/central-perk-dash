@@ -47,7 +47,7 @@ export const editMenu = async (val) => {
 
     try {
         const res = await fetch(firebaseURL + 'menu/items/' + data.id + '.json', {
-            method: 'PUT',
+            method: 'PATCH',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(data)
         });
