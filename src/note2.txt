@@ -9,43 +9,45 @@
 
 ----- (Order) -----
 
-- Order listing page
-- Order edit order
-- Add order
+x Order listing page
+x Order edit order
+x Add order
 
 -[ Add search functionality in orders ]-
 
 ----- (Menu - Food) -----
 
-- Food item listing
-- Food item single
-- Add food item
+x Food item listing
+x Food item single
+x Add food item
 
 -[ Add search functionality in menu ]-
 
 
 ----- (Customer Feedback) -----
 
-- Customer Feedback listing
-- Customer single 
+x Customer Feedback listing
 
 -[ Add search functionality in Customer Feedback ]-
-
 
 
 ----- (Table Booking) -----
 
 - Table booking listing 
 - Table booking single
-- Add table booking
 
 -[ Add search functionality in table booking ]-
 
 
-
------
-
 ----- (Issues) -----
 
 
-check img update issue in menu
+- check img update issue in menu
+
+x add user name in header
+
+- add diffrent icon in sidebar for menu
+
+x Feedback text limit in dashboard home 
+
+- Add loader

@@ -83,7 +83,7 @@ export default function Order() {
                                                                             return (
                                                                                 <>
                                                                                     <span>{value?.name}</span>
-                                                                                    <span>x</span>
+                                                                                    <span> x </span>
                                                                                 </>
                                                                             );
                                                                         })

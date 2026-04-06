@@ -1,11 +1,13 @@
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import { auth } from '../firebase';
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 export default function Header() {
 
     const nav = useNavigate();
+
+    const [userName,setUserName] = useState();
 
     const logOut = async () => {
         try {
@@ -19,7 +21,9 @@ export default function Header() {
         onAuthStateChanged(auth, (user) => {
             if (!user) {
                 nav('/login');
-            }
+            }else{
+                setUserName(auth.currentUser.displayName);
+            }        
         })
     })
 
@@ -133,7 +137,7 @@ export default function Header() {
                     </div>
                 </form>
                 <ul className="navbar-nav navbar-right">
-                    <li className="dropdown dropdown-list-toggle">
+                    <li className="dropdown dropdown-list-toggle hide_me">
                         <a
                             href="#"
                             data-toggle="dropdown"
@@ -239,7 +243,7 @@ export default function Header() {
                             </div>
                         </div>
                     </li>
-                    <li className="dropdown dropdown-list-toggle">
+                    <li className="dropdown dropdown-list-toggle hide_me">
                         <a
                             href="#"
                             data-toggle="dropdown"
@@ -320,25 +324,19 @@ export default function Header() {
                                 src="assets/img/avatar/avatar-1.png"
                                 className="rounded-circle mr-1"
                             />
-                            <div className="d-sm-none d-lg-inline-block">Hi, Ujang Maman</div>
+                            <div className="d-sm-none d-lg-inline-block">Hi, {auth?.currentUser?.displayName || 'User'}</div>
                         </a>
                         <div className="dropdown-menu dropdown-menu-right">
-                            <div className="dropdown-title">Logged in 5 min ago</div>
-                            <a href="features-profile.html" className="dropdown-item has-icon">
+                            {/* <div className="dropdown-title">Logged in 5 min ago</div> */}
+                            <a href="features-profile.html" className="dropdown-item has-icon hide_me">
                                 <i className="far fa-user" /> Profile
                             </a>
-                            <a
-                                href="features-activities.html"
-                                className="dropdown-item has-icon"
-                            >
-                                <i className="fas fa-bolt" /> Activities
-                            </a>
-                            <a href="features-settings.html" className="dropdown-item has-icon">
+                            <a href="features-settings.html" className="dropdown-item has-icon hide_me">
                                 <i className="fas fa-cog" /> Settings
                             </a>
                             <div className="dropdown-divider" />
                             <button onClick={logOut} className="dropdown-item has-icon text-danger">
-                                <i className="fas fa-sign-out-alt" /> Logout
+                                <i className="fas fa-sign-out-alt hide_me" /> Logout
                             </button>
                         </div>
                     </li>
